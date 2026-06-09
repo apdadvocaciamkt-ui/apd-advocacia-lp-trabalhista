@@ -1,0 +1,126 @@
+/* ============================================
+   ADP Advocacia — Design Tokens
+   Baseado no design system Airbnb (DESIGN.md)
+   Paleta adaptada para a identidade do cliente
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ----------------------------
+     CORES — Paleta ADP
+  ----------------------------- */
+
+  /* Marca */
+  --color-brand:       #E62645;  /* CTA primário, estados ativos, logo */
+  --color-brand-deep:  #9C0B35;  /* Hover da cor de marca */
+
+  /* Neutros escuros */
+  --color-carbon:  #1f2124;  /* Texto primário, headings, ícones */
+  --color-slate:   #69727d;  /* Texto secundário, metadados */
+  --color-silver:  #bbbdb7;  /* Desabilitados */
+  --color-stone:   #a8a8a8;  /* Skeleton loader */
+
+  /* Neutros claros */
+  --color-pebble:  #d4d4d0;  /* Bordas terciárias, placeholder de imagem */
+  --color-mist:    #e8e8e4;  /* Divisores sutis */
+  --color-fog:     #f2f2f2;  /* Canvas da página */
+  --color-cloud:   #ffffff;  /* Superfícies: cards, header, modais */
+
+  /* Aliases semânticos (facilita uso nos componentes) */
+  --color-text-primary:    var(--color-carbon);
+  --color-text-secondary:  var(--color-slate);
+  --color-text-disabled:   var(--color-silver);
+  --color-bg-canvas:       var(--color-fog);
+  --color-bg-surface:      var(--color-cloud);
+  --color-border:          var(--color-mist);
+  --color-border-strong:   var(--color-pebble);
+  --color-accent:          var(--color-brand);
+  --color-accent-hover:    var(--color-brand-deep);
+
+  /* ----------------------------
+     TIPOGRAFIA — Maven Pro
+  ----------------------------- */
+  --font-primary: 'Maven Pro', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Escala de tamanhos */
+  --text-caption:     11px;
+  --text-body:        14px;
+  --text-heading-sm:  20px;
+  --text-heading:     22px;
+  --text-display:     28px;
+
+  /* Line heights */
+  --leading-caption:     1.29;
+  --leading-body:        1.43;
+  --leading-heading-sm:  1.25;
+  --leading-heading:     1.23;
+  --leading-display:     1.18;
+
+  /* Letter spacing */
+  --tracking-caption:     0.44px;
+  --tracking-body:       -0.13px;
+  --tracking-heading-sm: -0.18px;
+  --tracking-heading:    -0.20px;
+  --tracking-display:    -0.56px;
+
+  /* Pesos */
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+
+  /* ----------------------------
+     ESPAÇAMENTO
+  ----------------------------- */
+  --spacing-4:   4px;
+  --spacing-6:   6px;
+  --spacing-8:   8px;
+  --spacing-10:  10px;
+  --spacing-12:  12px;
+  --spacing-16:  16px;
+  --spacing-20:  20px;
+  --spacing-24:  24px;
+  --spacing-32:  32px;
+  --spacing-40:  40px;
+  --spacing-48:  48px;
+
+  /* ----------------------------
+     BORDER RADIUS
+  ----------------------------- */
+  --radius-badges:     4px;
+  --radius-buttons:    8px;
+  --radius-inputs:     14px;
+  --radius-cards:      20px;
+  --radius-searchbar:  20px;
+  --radius-pills:      32px;
+  --radius-icon:       50%;
+
+  /* ----------------------------
+     SOMBRAS
+  ----------------------------- */
+  --shadow-elevated:
+    rgba(0, 0, 0, 0.02) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.04) 0px 2px 6px 0px,
+    rgba(0, 0, 0, 0.10) 0px 4px 8px 0px;
+
+  --shadow-card-nav:
+    rgba(0, 0, 0, 0.02) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.16) 0px 2px 4px 0px;
+
+  /* ----------------------------
+     LAYOUT
+  ----------------------------- */
+  --page-max-width:  1760px;
+  --section-gap:      48px;
+  --card-padding:     12px;
+  --element-gap:       8px;
+
+  /* ----------------------------
+     SUPERFÍCIES (aliases diretos)
+  ----------------------------- */
+  --surface-canvas:       #f2f2f2;
+  --surface-card:         #ffffff;
+  --surface-placeholder:  #d4d4d0;
+  --surface-loader:       #a8a8a8;
+}

@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APD Advocacia Trabalhista — Descubra Seus Direitos</title>
+    <meta name="description" content="Análise gratuita gratuita de direitos trabalhistas. Você pode ter dinheiro a receber da empresa e nem sabe disso.">
+
+    <!-- Google Fonts: Maven Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Design Tokens -->
+    <link rel="stylesheet" href="assets/css/tokens.css">
+
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-size: var(--text-body);
+            line-height: var(--leading-body);
+            letter-spacing: var(--tracking-body);
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-canvas);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           UTILITIES
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 24px;
+        }
+
+        .text-center { text-align: center; }
+        .hidden { display: none; }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: var(--radius-pills);
+            font-size: var(--text-body);
+            font-weight: var(--font-weight-semibold);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--color-brand);
+            color: var(--color-cloud);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-brand-deep);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .btn-white {
+            background-color: var(--color-cloud);
+            color: var(--color-brand);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+            min-width: 280px;
+        }
+
+        a[href*="wa.me"] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            background-image: url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--color-cloud);
+            padding: 80px 24px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 12, 12, 0.88);
+            z-index: 0;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-position: center center;
+            }
+        }
+
+        .hero-logo {
+            display: block;
+            margin: 0 auto var(--spacing-32);
+            height: 50px;
+            width: auto;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-headline {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: var(--font-weight-bold);
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: var(--spacing-20);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 1.6;
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-32);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .hero-checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-16);
+            margin: var(--spacing-32) auto;
+            max-width: 500px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-8);
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .checklist-item::before {
+            content: "✓";
+            color: var(--color-brand);
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1;
+            margin-right: 8px;
+        }
+
+        .hero-cta {
+            text-align: center;
+            margin-top: var(--spacing-32);
+        }
+
+        /* ============================================
+           DOR SECTION
+           ============================================ */
+        .dor-section {
+            background-color: var(--color-fog);
+        }
+
+        .section-headline {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: var(--font-weight-bold);
+            line-height: 1.3;
+            text-align: center;
+            margin-bottom: var(--spacing-40);
+            color: var(--color-carbon);
+        }
+
+        .dor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-20);
+            margin-bottom: var(--spacing-32);
+        }
+
+        .dor-card {
+            background: var(--color-cloud);
+            border-radius: var(--radius-cards);
+            padding: var(--spacing-24);
+            box-shadow: var(--shadow-elevated);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dor-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-deep) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-16);
+            color: var(--color-cloud);
+            font-size: 32px;
+        }
+
+        .dor-title {
+            font-size: 18px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-carbon);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .dor-text {
+            font-size: 14px;
+            color: var(--color-slate);
+            line-height: 1.5;
+        }
+
+        .dor-cta {
+            text-align: center;
+        }
+
+        /* ============================================
+           STACKED CARDS - CSS Pure (Mobile Only)
+           ============================================ */
+        @media (max-width: 768px) {
+            .dor-section {
+                padding: 80px 24px;
+            }
+
+            .dor-grid {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .dor-card {
+                position: sticky;
+                margin-bottom: 16px;
+                transform: scale(1);
+                transition: transform 0.2s ease;
+            }
+
+            /* Primeiro card atrás, último na frente */
+            .dor-card:nth-child(1) { top: 80px; z-index: 1; }
+            .dor-card:nth-child(2) { top: 88px; z-index: 2; }
+            .dor-card:nth-child(3) { top: 96px; z-index: 3; }
+            .dor-card:nth-child(4) { top: 104px; z-index: 4; }
+            .dor-card:nth-child(5) { top: 112px; z-index: 5; }
+            .dor-card:nth-child(6) { top: 120px; z-index: 6; }
+        }
+
+        /* ============================================
+           COMO FUNCIONA SECTION
+           ============================================ */
+        .como-section {
+            background-color: var(--color-brand);
+            color: var(--color-cloud);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .como-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at bottom left, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .como-section .section-headline {
+            color: var(--color-cloud);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-32);
+            position: relative;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-16);
+            font-size: 28px;
+            font-weight: var(--font-weight-bold);
+            backdrop-filter: blur(10px);
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .step-text {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+            max-width: 220px;
+            margin: 8px auto 0;
+            text-wrap: balance;
+        }
+
+        /* ============================================
+           CONFIANÇA SECTION
+           ============================================ */
+        .confianca-section {
+            background-color: var(--color-cloud);
+        }
+
+        .confianca-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-20);
+            margin-bottom: var(--spacing-48);
+        }
+
+        .confianca-card {
+            text-align: center;
+            padding: var(--spacing-24);
+            border-radius: var(--radius-cards);
+            background: var(--color-fog);
+            transition: transform 0.3s ease;
+        }
+
+        .confianca-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .confianca-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--spacing-16);
+            color: var(--color-brand);
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confianca-title {
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-carbon);
+        }
+
+        .depoimentos-section {
+            margin-top: var(--spacing-48);
+        }
+
+        .depoimentos-title {
+            font-size: 20px;
+            font-weight: var(--font-weight-semibold);
+            text-align: center;
+            margin-bottom: var(--spacing-32);
+            color: var(--color-carbon);
+        }
+
+        .depoimentos-section .container {
+            padding: 0 24px;
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-20);
+        }
+
+        /* ============================================
+           TESTIMONIALS CAROUSEL (Infinite Scroll)
+           ============================================ */
+        .depoimentos-section {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .testimonials-track-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 16px 0;
+        }
+
+        .testimonials-track-wrapper::before,
+        .testimonials-track-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .testimonials-track-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--color-cloud), transparent);
+        }
+
+        .testimonials-track-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--color-cloud), transparent);
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: scroll-infinite 18s linear infinite;
+            padding-left: 24px;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-infinite {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .depoimento-card {
+            background: var(--color-cloud);
+            border-radius: var(--radius-cards);
+            padding: var(--spacing-24);
+            box-shadow: var(--shadow-elevated);
+            min-width: 300px;
+            max-width: 300px;
+            flex-shrink: 0;
+        }
+
+        .stars {
+            color: var(--color-brand);
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .depoimento-text {
+            font-size: 14px;
+            color: var(--color-slate);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: var(--spacing-16);
+        }
+
+        .depoimento-author {
+            font-size: 14px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-carbon);
+        }
+
+        .confianca-cta {
+            text-align: center;
+            margin-top: var(--spacing-40);
+        }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        .faq-section {
+            background-color: var(--color-fog);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--color-cloud);
+            border-radius: var(--radius-cards);
+            margin-bottom: var(--spacing-12);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: var(--spacing-20);
+            background: none;
+            border: none;
+            font-family: var(--font-primary);
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-carbon);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--color-fog);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            background: var(--color-brand);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--color-cloud);
+            stroke-width: 2.5;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-content {
+            padding: 0 var(--spacing-20) var(--spacing-20);
+            font-size: 15px;
+            color: var(--color-slate);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           CTA FINAL SECTION
+           ============================================ */
+        .cta-final-section {
+            position: relative;
+            background-image: url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--color-cloud);
+            text-align: center;
+            overflow: hidden;
+            padding: 80px 24px;
+        }
+
+        .cta-final-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 12, 12, 0.88);
+            z-index: 0;
+        }
+
+        .cta-final-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-final-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: var(--color-brand);
+            font-size: 12px;
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .cta-final-headline {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: var(--font-weight-bold);
+            max-width: 560px;
+            margin: 12px auto;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .cta-sub {
+            font-size: 16px;
+            font-weight: var(--font-weight-regular);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 420px;
+            margin: 16px auto 40px;
+            text-align: center;
+            line-height: 1.5;
+            text-wrap: balance;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background-color: var(--color-carbon);
+            color: var(--color-cloud);
+            padding: 80px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-40);
+            margin-bottom: var(--spacing-32);
+        }
+
+        .footer-logo {
+            height: 40px;
+            margin-bottom: var(--spacing-16);
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-oab {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: var(--spacing-16);
+        }
+
+        .footer-address {
+            font-size: 14px;
+            opacity: 0.85;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .footer-title {
+            font-size: 16px;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-16);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .footer-links a {
+            color: var(--color-cloud);
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-links a i {
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-24);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           STICKY CTA (Mobile Only)
+           ============================================ */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-12) var(--spacing-20);
+            background: var(--color-cloud);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .sticky-cta .btn {
+            width: 100%;
+            padding: 18px 24px;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .dor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .confianca-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .depoimentos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .depoimento-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-checklist {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+            }
+
+            .dor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-24);
+            }
+
+            .confianca-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-12);
+            }
+
+            .confianca-card {
+                padding: var(--spacing-16);
+            }
+
+            .depoimentos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .depoimento-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+
+            .cta-final-section {
+                padding-top: 80px !important;
+                padding-bottom: 80px !important;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-32);
+            }
+
+            .sticky-cta {
+                display: block;
+            }
+
+            body {
+                padding-bottom: 70px;
+            }
+
+            /* Mobile buttons */
+            .btn,
+            .btn-primary,
+            .btn-white,
+            .btn-large,
+            a[href*="wa.me"] {
+                width: 100%;
+                padding: 18px 24px;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-large {
+                padding: var(--spacing-14) var(--spacing-24);
+                font-size: 15px;
+            }
+
+            .section {
+                padding: calc(var(--section-gap) * 0.75) 0;
+            }
+        }
+
+        /* ============================================
+           LOADING ANIMATION
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="assets/images/LOGO-ADP.svg" alt="APD Advocacia" class="hero-logo" data-aos="fade-down">
+
+            <div class="hero-content">
+                <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="100">
+                    Você pode ter dinheiro a receber da empresa e nem sabe disso.
+                </h1>
+
+                <p class="hero-subheadline" data-aos="fade-up" data-aos-delay="200">
+                    Muitos trabalhadores deixam de receber valores importantes simplesmente porque não sabem que possuem direitos. Conte sua situação e receba uma análise jurídica gratuita com advogados trabalhistas especializados.
+                </p>
+
+                <div class="hero-checklist" data-aos="fade-up" data-aos-delay="300">
+                    <div class="checklist-item">Atendimento 100% online</div>
+                    <div class="checklist-item">Análise inicial gratuita</div>
+                    <div class="checklist-item">Linguagem simples</div>
+                    <div class="checklist-item">Acompanhamento completo</div>
+                </div>
+
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://wa.me/5531999999999" class="btn btn-white btn-large">
+                        QUERO DESCOBRIR MEUS DIREITOS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dor Section -->
+    <section class="section dor-section">
+        <div class="container">
+            <h2 class="section-headline" data-aos="fade-up">
+                Milhares de trabalhadores deixam dinheiro na mesa sem saber.
+            </h2>
+
+            <div class="dor-grid">
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-clock"></i>
+                    </div>
+                    <h3 class="dor-title">Hora Extra Não Paga</h3>
+                    <p class="dor-text">Trabalhou além da jornada e não recebeu? Tem direito a receber com adicional.</p>
+                </div>
+
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-clipboard-text"></i>
+                    </div>
+                    <h3 class="dor-title">Demissão com Valores Incorretos</h3>
+                    <p class="dor-text">Calcularam seu saldo errado? Multas e verbas rescisórias podem estar faltando.</p>
+                </div>
+
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-file-text"></i>
+                    </div>
+                    <h3 class="dor-title">Sem Carteira Assinada</h3>
+                    <p class="dor-text">Trabalhou informalizado? É possível reconhecer o vínculo e receber todos os direitos.</p>
+                </div>
+
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-heartbeat"></i>
+                    </div>
+                    <h3 class="dor-title">Acidente de Trabalho</h3>
+                    <p class="dor-text">Se sofreu acidente ou desenvolveu doença ocupacional, tem direitos especiais.</p>
+                </div>
+
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-motorcycle"></i>
+                    </div>
+                    <h3 class="dor-title">Motoristas e Entregadores</h3>
+                    <p class="dor-text">Aplicativos de entrega e transporte têm regras específicas de direitos.</p>
+                </div>
+
+                <div class="dor-card">
+                    <div class="dor-icon">
+                        <i class="ph ph-warning"></i>
+                    </div>
+                    <h3 class="dor-title">Insalubridade ou Periculosidade</h3>
+                    <p class="dor-text">Trabalhou em condições insalubres ou perigosas? Tem direito a adicionais.</p>
+                </div>
+            </div>
+
+            <div class="dor-cta" data-aos="fade-up">
+                <a href="https://wa.me/5531999999999" class="btn btn-primary btn-large">
+                    SOLICITAR ANÁLISE GRATUITA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section class="section como-section">
+        <div class="container">
+            <h2 class="section-headline" data-aos="fade-up">
+                Como Funciona
+            </h2>
+
+            <div class="steps-container">
+                <div class="step-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Você conta sua situação</h3>
+                    <p class="step-text">Relate sua história de trabalho de forma simples e direta.</p>
+                </div>
+
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Nossa equipe analisa seu caso</h3>
+                    <p class="step-text">Advogados especializados avaliam seus direitos trabalhistas.</p>
+                </div>
+
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Você entende seus direitos</h3>
+                    <p class="step-text">Receba uma explicação clara do que você pode receber.</p>
+                </div>
+
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">A APD cuida do restante</h3>
+                    <p class="step-text">Defendemos seus direitos com transparência e dedicação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confiança Section -->
+    <section class="section confianca-section">
+        <div class="container">
+            <h2 class="section-headline" data-aos="fade-up">
+                Por que escolher a APD Advocacia?
+            </h2>
+
+            <div class="confianca-grid">
+                <div class="confianca-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="confianca-icon">
+                        <i class="ph ph-globe-hemisphere-west"></i>
+                    </div>
+                    <h3 class="confianca-title">Atendimento Nacional</h3>
+                </div>
+
+                <div class="confianca-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="confianca-icon">
+                        <i class="ph ph-buildings"></i>
+                    </div>
+                    <h3 class="confianca-title">Estrutura Full Service</h3>
+                </div>
+
+                <div class="confianca-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="confianca-icon">
+                        <i class="ph ph-map-pin"></i>
+                    </div>
+                    <h3 class="confianca-title">Presença em MG e ES</h3>
+                </div>
+
+                <div class="confianca-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="confianca-icon">
+                        <i class="ph ph-handshake"></i>
+                    </div>
+                    <h3 class="confianca-title">Atendimento Humanizado</h3>
+                </div>
+            </div>
+
+            <div class="depoimentos-section">
+                <div class="container">
+                    <h3 class="depoimentos-title" data-aos="fade-up">O que nossos clientes dizem</h3>
+                </div>
+
+                <div class="testimonials-track-wrapper">
+                    <div class="testimonials-track">
+                        <!-- Cards originais -->
+                        <div class="depoimento-card" data-aos="fade-up" data-aos-delay="0">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Não sabia que tinha direito a receber horas extras. A equipe da APD foi super atenciosa e conseguiu recuperar valores importantes."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+
+                        <div class="depoimento-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Fui demitido sem receber tudo que era devido. Graças à APD, recebi meus direitos de forma rápida e transparente."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+
+                        <div class="depoimento-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Atendimento excepcional. Explicaram tudo de forma simples e me acompanharam durante todo o processo."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+
+                        <!-- Cards duplicados para loop infinito -->
+                        <div class="depoimento-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Não sabia que tinha direito a receber horas extras. A equipe da APD foi super atenciosa e conseguiu recuperar valores importantes."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+
+                        <div class="depoimento-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Fui demitido sem receber tudo que era devido. Graças à APD, recebi meus direitos de forma rápida e transparente."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+
+                        <div class="depoimento-card">
+                            <div class="stars">★★★★★</div>
+                            <p class="depoimento-text">"Atendimento excepcional. Explicaram tudo de forma simples e me acompanharam durante todo o processo."</p>
+                            <p class="depoimento-author">— Cliente satisfeito</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confianca-cta" data-aos="fade-up">
+                <a href="https://wa.me/5531999999999" class="btn btn-primary btn-large">
+                    FALAR COM UM ADVOGADO AGORA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-headline" data-aos="fade-up">
+                Perguntas Frequentes
+            </h2>
+
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+                    <button class="faq-question">
+                        <span>O atendimento é realmente gratuito?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sim! A análise inicial do seu caso é completamente gratuita. Nossa equipe avalia sua situação e explica seus direitos sem qualquer custo. Se decidirmos avançar com uma ação, trabalhamos com sistema de honorários condicionados ao êxito — você só paga se ganhar.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
+                    <button class="faq-question">
+                        <span>Atendem em todo o Brasil?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sim, atendemos em todo o território nacional. Com nossa estrutura 100% digital, podemos defender seus direitos trabalhista independentemente de onde você esteja. Temos presença física em Minas Gerais e Espírito Santo para atendimento presencial quando necessário.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-question">
+                        <span>Preciso ir ao escritório?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Não! Todo o atendimento pode ser realizado remotamente, via WhatsApp, e-mail ou videoconferência. Você se comunica conosco no horário que for conveniente para você, sem precisar se deslocar. Apenas em casos específicos pode ser necessário algum comparecimento, mas sempre combinado com você.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <button class="faq-question">
+                        <span>Quanto tempo leva o processo?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            O tempo varia de caso para caso. Alguns acordos são fechados em poucas semanas, outros podem levar meses. Trabalhamos sempre com foco em resolver o mais rápido possível, mas sem abrir mão da qualidade e do valor que você tem direito a receber. Durante todo o processo você será informado sobre o andamento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question">
+                        <span>Fui demitido há mais de um ano, ainda tenho direitos?</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Depende. O prazo para reclamar direitos trabalhistas é de até 2 anos após a demissão, mas os direitos são contados dos últimos 5 anos de trabalho. Se foi demitido há menos de 2 anos, ainda é possível analisar e recuperar direitos. Entre em contato para uma avaliação gratuita do seu caso específico.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section class="section cta-final-section">
+        <div class="container cta-final-content">
+            <span class="eyebrow" data-aos="fade-up">Análise jurídica gratuita</span>
+            <h2 class="cta-final-headline" data-aos="fade-up" data-aos-delay="100">
+                Descubra agora se existem direitos trabalhistas que podem estar esperando por você.
+            </h2>
+            <p class="cta-sub" data-aos="fade-up" data-aos-delay="200">
+                Sem compromisso. Sem juridiquês. Só você entendendo o que tem direito a receber.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <a href="https://wa.me/5531999999999" class="btn btn-white btn-large">
+                    QUERO FALAR COM UM ADVOGADO
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <img src="assets/images/LOGO-ADP.svg" alt="APD Advocacia" class="footer-logo">
+                    <p class="footer-oab">OAB/MG XXXXX | OAB/ES XXXXX</p>
+                    <p class="footer-address">
+                        <strong>Belo Horizonte - MG</strong><br>
+                        Av. Afonso Pena, 0000, Sala 000<br>
+                        Edifício Centro - Centro<br>
+                        CEP: 30130-000
+                    </p>
+                    <p class="footer-address" style="margin-top: 16px;">
+                        <strong>Vitória - ES</strong><br>
+                        Rua José Marcelo, 000, Sala 000<br>
+                        Edifício Comercial - Centro<br>
+                        CEP: 29015-000
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Contato</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/5531999999999"><i class="ph ph-whatsapp-logo"></i>WhatsApp</a></li>
+                        <li><a href="tel:+5531999999999"><i class="ph ph-phone"></i>Telefone: (31) 9999-9999</a></li>
+                        <li><a href="mailto:contato@apdadvocacia.com.br"><i class="ph ph-envelope"></i>contato@apdadvocacia.com.br</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Redes Sociais</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="ph ph-instagram-logo"></i>Instagram</a></li>
+                        <li><a href="#"><i class="ph ph-linkedin-logo"></i>LinkedIn</a></li>
+                        <li><a href="#"><i class="ph ph-facebook-logo"></i>Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 APD Advocacia Trabalhista. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA (Mobile Only) -->
+    <div class="sticky-cta">
+        <a href="https://wa.me/5531999999999" class="btn btn-primary">
+            FALAR COM ADVOGADO
+        </a>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 700,
+            once: true,
+            easing: 'ease-out-cubic',
+            offset: 50
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const isActive = faqItem.classList.contains('active');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = '0px';
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
