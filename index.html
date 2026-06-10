@@ -221,65 +221,6 @@
         }
 
         /* ============================================
-           LEAD FORM
-           ============================================ */
-        .lead-form {
-            max-width: 500px;
-            margin: 24px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .lead-form input,
-        .lead-form select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--color-mist);
-            border-radius: var(--radius-inputs);
-            font-family: var(--font-primary);
-            font-size: 15px;
-            color: var(--color-carbon);
-            background-color: rgba(255, 255, 255, 0.9);
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        .lead-form input:focus,
-        .lead-form select:focus {
-            border-color: var(--color-brand);
-        }
-
-        .lead-form select {
-            cursor: pointer;
-        }
-
-        .lead-form button {
-            width: 100%;
-            background-color: var(--color-brand);
-            color: var(--color-cloud);
-            padding: 16px 32px;
-            border-radius: var(--radius-pills);
-            font-size: 16px;
-            font-weight: var(--font-weight-semibold);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .lead-form button:hover {
-            background-color: var(--color-brand-deep);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .lead-form {
-                max-width: 100%;
-                padding: 0 16px;
-            }
-        }
-
-        /* ============================================
            DOR SECTION
            ============================================ */
         .dor-section {
@@ -982,26 +923,10 @@
                 </div>
 
                 <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
-                    <a href="https://wa.me/5531999999999" class="btn btn-white btn-large">
+                    <a href="https://wa.me/5527301939933" class="btn btn-white btn-large">
                         QUERO DESCOBRIR MEUS DIREITOS
                     </a>
                 </div>
-
-                <form class="lead-form" data-aos="fade-up" data-aos-delay="500">
-                    <input type="text" placeholder="Seu nome" required>
-                    <input type="tel" placeholder="Seu WhatsApp" required>
-                    <select required>
-                        <option value="">Qual é a sua situação?</option>
-                        <option>Hora extra não paga</option>
-                        <option>Demissão com valores incorretos</option>
-                        <option>Trabalho sem carteira assinada</option>
-                        <option>Acidente de trabalho</option>
-                        <option>Motorista/entregador</option>
-                        <option>Insalubridade ou periculosidade</option>
-                        <option>Outra situação</option>
-                    </select>
-                    <button type="submit">QUERO DESCOBRIR MEUS DIREITOS</button>
-                </form>
             </div>
         </div>
     </section>
@@ -1064,7 +989,7 @@
             </div>
 
             <div class="dor-cta" data-aos="fade-up">
-                <a href="https://wa.me/5531999999999" class="btn btn-primary btn-large">
+                <a href="https://wa.me/5527301939933" class="btn btn-primary btn-large">
                     FALAR COM UM ADVOGADO AGORA
                 </a>
             </div>
@@ -1193,7 +1118,7 @@
             </div>
 
             <div class="confianca-cta" data-aos="fade-up">
-                <a href="https://wa.me/5531999999999" class="btn btn-primary btn-large">
+                <a href="https://wa.me/5527301939933" class="btn btn-primary btn-large">
                     FALAR COM UM ADVOGADO AGORA
                 </a>
             </div>
@@ -1302,7 +1227,7 @@
                 Sem compromisso. Sem juridiquês. Só você entendendo o que tem direito a receber.
             </p>
             <div data-aos="fade-up" data-aos-delay="300">
-                <a href="https://wa.me/5531999999999" class="btn btn-white btn-large">
+                <a href="https://wa.me/5527301939933" class="btn btn-white btn-large">
                     QUERO FALAR COM UM ADVOGADO
                 </a>
             </div>
@@ -1359,7 +1284,7 @@
 
     <!-- Sticky CTA (Mobile Only) -->
     <div class="sticky-cta">
-        <a href="https://wa.me/5531999999999" class="btn btn-primary">
+        <a href="https://wa.me/5527301939933" class="btn btn-primary">
             FALAR COM ADVOGADO
         </a>
     </div>
@@ -1379,9 +1304,9 @@
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                const answer = faqItem.querySelector('.faq-answer');
-                const isActive = faqItem.classList.contains('active');
+                const fdqItem = button.parentElement;
+                const answer = fdqItem.querySelector('.faq-answer');
+                const isActive = fdqItem.classList.contains('active');
 
                 // Close all other items
                 document.querySelectorAll('.faq-item').forEach(item => {
@@ -1391,32 +1316,11 @@
 
                 // Toggle current item
                 if (!isActive) {
-                    faqItem.classList.add('active');
+                    fdqItem.classList.add('active');
                     answer.style.maxHeight = answer.scrollHeight + 'px';
                 }
             });
         });
-
-        // Lead Form Submission
-        const leadForm = document.querySelector('.lead-form');
-        if (leadForm) {
-            leadForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const nome = leadForm.querySelector('input[type="text"]').value;
-                const whatsapp = leadForm.querySelector('input[type="tel"]').value;
-                const situacao = leadForm.querySelector('select').value;
-
-                // Criar mensagem para WhatsApp
-                const mensagem = `Olá! Me chamo ${nome}.\n\nSituação: ${situacao}\n\nGostaria de saber mais sobre meus direitos trabalhistas.`;
-
-                // Codificar mensagem para URL
-                const mensagemCodificada = encodeURIComponent(mensagem);
-
-                // Redirecionar para WhatsApp
-                window.open(`https://wa.me/5531999999999?text=${mensagemCodificada}`, '_blank');
-            });
-        }
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
