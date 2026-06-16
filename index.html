@@ -1360,6 +1360,21 @@
                 }
             });
         });
+
+        // Facebook Lead Event on WhatsApp clicks
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', function () {
+                fbq('track', 'Lead');
+            });
+        });
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
