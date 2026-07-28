@@ -444,20 +444,37 @@
         }
 
         .dor-card.cta-card {
-            background: var(--color-cloud);
-            border: 2px solid var(--color-brand);
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: var(--spacing-20);
+            justify-content: center;
+            gap: var(--spacing-16);
+            padding: 8px 12px;
+            min-height: 216px;
+        }
+
+        .dor-card.cta-card::before,
+        .dor-card.cta-card .dor-icon {
+            display: none;
+        }
+
+        .dor-card.cta-card:hover {
+            transform: none;
+            box-shadow: none;
         }
 
         .dor-card.cta-card .dor-title {
-            font-size: 22px;
+            font-size: 24px;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-8);
         }
 
         .dor-card.cta-card .dor-text {
             font-size: 15px;
+            max-width: 280px;
         }
 
         .dor-card.cta-card .btn {
@@ -491,6 +508,10 @@
                 margin-bottom: 0;
                 transform: scale(1);
                 transition: transform 0.2s ease;
+            }
+
+            .dor-card.cta-card {
+                display: none;
             }
         }
 
@@ -1178,11 +1199,8 @@
 
                 <div class="dor-card cta-card">
                     <div>
-                        <div class="dor-icon">
-                            <i class="ph ph-chat-circle-text"></i>
-                        </div>
-                        <h3 class="dor-title">Não sabe em qual caso se encaixa?</h3>
-                        <p class="dor-text">Conte sua situação no WhatsApp e receba uma análise inicial gratuita, sem compromisso e em linguagem simples.</p>
+                        <h3 class="dor-title">Ficou em dúvida?</h3>
+                        <p class="dor-text">Conte sua situação e receba uma análise inicial gratuita.</p>
                     </div>
                     <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e quero entender se tenho direitos trabalhistas a receber." class="btn btn-primary" data-whatsapp-position="card-duvida-direitos" data-whatsapp-topic="duvida-direitos">
                         TIRAR MINHA DÚVIDA
