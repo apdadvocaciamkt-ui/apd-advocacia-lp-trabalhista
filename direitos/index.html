@@ -274,14 +274,29 @@
             grid-template-columns: repeat(3, 1fr);
             gap: var(--spacing-20);
             margin-bottom: var(--spacing-32);
+            align-items: stretch;
         }
 
         .dor-card {
             background: var(--color-cloud);
-            border-radius: var(--radius-cards);
-            padding: var(--spacing-24);
-            box-shadow: var(--shadow-elevated);
+            border: 1px solid rgba(33, 37, 41, 0.08);
+            border-radius: 14px;
+            padding: 28px;
+            min-height: 158px;
+            box-shadow: 0 14px 34px rgba(33, 37, 41, 0.08);
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dor-card::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 4px;
+            background: var(--color-brand);
+            border-radius: 999px;
+            margin-bottom: var(--spacing-20);
         }
 
         .dor-card:hover {
@@ -290,16 +305,16 @@
         }
 
         .dor-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-deep) 100%);
-            border-radius: 16px;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 122, 26, 0.12);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: var(--spacing-16);
-            color: var(--color-cloud);
-            font-size: 32px;
+            color: var(--color-brand);
+            font-size: 24px;
         }
 
         .dor-title {
@@ -317,8 +332,31 @@
 
         /* Card em destaque — tema de maior conversão da campanha */
         .dor-card.featured {
-            grid-column: span 2;
-            border: 2px solid var(--color-brand);
+            grid-row: span 2;
+            background: var(--color-carbon);
+            border-color: var(--color-carbon);
+            min-height: 338px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dor-card.featured::before {
+            background: var(--color-brand);
+        }
+
+        .dor-card.featured .dor-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-brand);
+        }
+
+        .dor-card.featured .dor-title,
+        .dor-card.featured .dor-text {
+            color: var(--color-cloud);
+        }
+
+        .dor-card.featured .dor-text {
+            color: rgba(255, 255, 255, 0.78);
         }
 
         .dor-badge {
@@ -335,11 +373,74 @@
         }
 
         .dor-card.featured .dor-title {
-            font-size: 22px;
+            font-size: 24px;
         }
 
         .dor-card.featured .dor-text {
             font-size: 15px;
+        }
+
+        .dor-proof {
+            color: var(--color-brand);
+            font-size: 38px;
+            line-height: 1;
+            font-weight: var(--font-weight-bold);
+            margin-top: var(--spacing-28);
+        }
+
+        .dor-proof span {
+            display: block;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: var(--font-weight-medium);
+            margin-top: var(--spacing-8);
+        }
+
+        .dor-card.accent {
+            background: var(--color-brand);
+            border-color: var(--color-brand);
+        }
+
+        .dor-card.accent::before {
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .dor-card.accent .dor-icon {
+            background: rgba(255, 255, 255, 0.18);
+            color: var(--color-cloud);
+        }
+
+        .dor-card.accent .dor-title,
+        .dor-card.accent .dor-text {
+            color: var(--color-cloud);
+        }
+
+        .dor-card.accent .dor-text {
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .dor-card.image-card {
+            grid-column: span 2;
+            background:
+                linear-gradient(90deg, rgba(8, 10, 12, 0.92), rgba(8, 10, 12, 0.72)),
+                url('/assets/images/IMG_5240-1024x683.jpg') center / cover;
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .dor-card.image-card .dor-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-brand);
+        }
+
+        .dor-card.image-card .dor-title,
+        .dor-card.image-card .dor-text {
+            color: var(--color-cloud);
+        }
+
+        .dor-card.image-card .dor-text {
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 520px;
         }
 
         .dor-cta {
@@ -358,23 +459,15 @@
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                gap: 0;
+                gap: var(--spacing-16);
             }
 
             .dor-card {
-                position: sticky;
-                margin-bottom: 16px;
+                position: relative;
+                margin-bottom: 0;
                 transform: scale(1);
                 transition: transform 0.2s ease;
             }
-
-            /* Primeiro card atrás, último na frente */
-            .dor-card:nth-child(1) { top: 80px; z-index: 1; }
-            .dor-card:nth-child(2) { top: 88px; z-index: 2; }
-            .dor-card:nth-child(3) { top: 96px; z-index: 3; }
-            .dor-card:nth-child(4) { top: 104px; z-index: 4; }
-            .dor-card:nth-child(5) { top: 112px; z-index: 5; }
-            .dor-card:nth-child(6) { top: 120px; z-index: 6; }
         }
 
         /* ============================================
@@ -988,7 +1081,7 @@
                 </div>
 
                 <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
-                    <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-white btn-large">
+                    <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-white btn-large" data-whatsapp-position="hero" data-whatsapp-topic="direitos-trabalhistas">
                         QUERO DESCOBRIR MEUS DIREITOS
                     </a>
                 </div>
@@ -1005,12 +1098,18 @@
 
             <div class="dor-grid">
                 <div class="dor-card featured" id="sem-carteira">
-                    <div class="dor-icon">
-                        <i class="ph ph-file-text"></i>
+                    <div>
+                        <div class="dor-icon">
+                            <i class="ph ph-file-text"></i>
+                        </div>
+                        <span class="dor-badge">Caso mais comum</span>
+                        <h3 class="dor-title">Trabalhou sem carteira assinada?</h3>
+                        <p class="dor-text">Mesmo sem registro formal, é possível reconhecer o vínculo empregatício na Justiça e receber férias, 13º, FGTS e todos os direitos do período trabalhado.</p>
                     </div>
-                    <span class="dor-badge">Caso mais comum</span>
-                    <h3 class="dor-title">Trabalhou sem carteira assinada?</h3>
-                    <p class="dor-text">Mesmo sem registro formal, é possível reconhecer o vínculo empregatício na Justiça e receber férias, 13º, FGTS e todos os direitos do período trabalhado.</p>
+                    <div class="dor-proof">
+                        FGTS + 13º
+                        <span>direitos que podem ser analisados mesmo sem registro formal</span>
+                    </div>
                 </div>
 
                 <div class="dor-card" id="hora-extra">
@@ -1029,6 +1128,14 @@
                     <p class="dor-text">Se sofreu acidente ou desenvolveu doença ocupacional, tem direitos especiais.</p>
                 </div>
 
+                <div class="dor-card accent">
+                    <div class="dor-icon">
+                        <i class="ph ph-warning"></i>
+                    </div>
+                    <h3 class="dor-title">Insalubridade ou Periculosidade</h3>
+                    <p class="dor-text">Trabalhou em condições insalubres ou perigosas? Tem direito a adicionais.</p>
+                </div>
+
                 <div class="dor-card">
                     <div class="dor-icon">
                         <i class="ph ph-clipboard-text"></i>
@@ -1037,25 +1144,17 @@
                     <p class="dor-text">Calcularam seu saldo errado? Multas e verbas rescisórias podem estar faltando.</p>
                 </div>
 
-                <div class="dor-card">
+                <div class="dor-card image-card">
                     <div class="dor-icon">
                         <i class="ph ph-motorcycle"></i>
                     </div>
                     <h3 class="dor-title">Motoristas e Entregadores</h3>
-                    <p class="dor-text">Aplicativos de entrega e transporte têm regras específicas de direitos.</p>
-                </div>
-
-                <div class="dor-card">
-                    <div class="dor-icon">
-                        <i class="ph ph-warning"></i>
-                    </div>
-                    <h3 class="dor-title">Insalubridade ou Periculosidade</h3>
-                    <p class="dor-text">Trabalhou em condições insalubres ou perigosas? Tem direito a adicionais.</p>
+                    <p class="dor-text">Aplicativos de entrega e transporte têm regras específicas de direitos. A análise identifica se existe vínculo, verbas não pagas ou outros direitos a recuperar.</p>
                 </div>
             </div>
 
             <div class="dor-cta" data-aos="fade-up">
-                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary btn-large">
+                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary btn-large" data-whatsapp-position="secao-direitos" data-whatsapp-topic="direitos-trabalhistas">
                     FALAR COM UM ADVOGADO AGORA
                 </a>
             </div>
@@ -1187,7 +1286,7 @@
             </div>
 
             <div class="confianca-cta" data-aos="fade-up">
-                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary btn-large">
+                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary btn-large" data-whatsapp-position="secao-confianca" data-whatsapp-topic="direitos-trabalhistas">
                     FALAR COM UM ADVOGADO AGORA
                 </a>
             </div>
@@ -1328,7 +1427,7 @@
                 Sem compromisso. Sem juridiquês. Só você entendendo o que tem direito a receber.
             </p>
             <div data-aos="fade-up" data-aos-delay="300">
-                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-white btn-large">
+                <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-white btn-large" data-whatsapp-position="cta-final" data-whatsapp-topic="direitos-trabalhistas">
                     QUERO FALAR COM UM ADVOGADO
                 </a>
             </div>
@@ -1385,7 +1484,7 @@
 
     <!-- Sticky CTA (Mobile Only) -->
     <div class="sticky-cta">
-        <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary">
+        <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e gostaria de uma análise dos meus direitos trabalhistas." class="btn btn-primary" data-whatsapp-position="sticky-mobile" data-whatsapp-topic="direitos-trabalhistas">
             FALAR COM ADVOGADO
         </a>
     </div>
@@ -1449,10 +1548,42 @@
             }
         });
 
-        // Facebook Lead Event on WhatsApp clicks
+        // Tracking dos cliques no WhatsApp para GTM/dataLayer e Meta Pixel.
         document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-            link.addEventListener('click', function () {
-                fbq('track', 'Lead');
+            link.addEventListener('click', function (event) {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) return;
+
+                event.preventDefault();
+
+                let hasNavigated = false;
+                const goToWhatsApp = () => {
+                    if (hasNavigated) return;
+                    hasNavigated = true;
+                    window.location.href = this.href;
+                };
+
+                const trackingData = {
+                    event: 'whatsapp_click',
+                    event_category: 'lead',
+                    event_label: this.textContent.trim(),
+                    page_path: window.location.pathname,
+                    page_hash: window.location.hash || '',
+                    whatsapp_position: this.dataset.whatsappPosition || 'unknown',
+                    whatsapp_topic: this.dataset.whatsappTopic || 'direitos-trabalhistas',
+                    whatsapp_url: this.href,
+                    eventCallback: goToWhatsApp,
+                    eventTimeout: 700
+                };
+
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push(trackingData);
+
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead');
+                    fbq('trackCustom', 'WhatsAppClick', trackingData);
+                }
+
+                setTimeout(goToWhatsApp, 700);
             });
         });
     </script>
