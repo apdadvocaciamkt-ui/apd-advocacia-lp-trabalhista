@@ -424,7 +424,7 @@
             grid-column: span 2;
             background:
                 linear-gradient(90deg, rgba(8, 10, 12, 0.92), rgba(8, 10, 12, 0.72)),
-                url('/assets/images/IMG_5240-1024x683.jpg') center / cover;
+                url('/assets/images/motoristas-entregadores-card.png') center / cover;
             border-color: rgba(255, 255, 255, 0.08);
         }
 
@@ -441,6 +441,30 @@
         .dor-card.image-card .dor-text {
             color: rgba(255, 255, 255, 0.78);
             max-width: 520px;
+        }
+
+        .dor-card.cta-card {
+            background: var(--color-cloud);
+            border: 2px solid var(--color-brand);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: var(--spacing-20);
+        }
+
+        .dor-card.cta-card .dor-title {
+            font-size: 22px;
+        }
+
+        .dor-card.cta-card .dor-text {
+            font-size: 15px;
+        }
+
+        .dor-card.cta-card .btn {
+            align-self: flex-start;
+            min-height: 48px;
+            padding: 14px 22px;
+            font-size: 13px;
         }
 
         .dor-cta {
@@ -1150,6 +1174,19 @@
                     </div>
                     <h3 class="dor-title">Motoristas e Entregadores</h3>
                     <p class="dor-text">Aplicativos de entrega e transporte têm regras específicas de direitos. A análise identifica se existe vínculo, verbas não pagas ou outros direitos a recuperar.</p>
+                </div>
+
+                <div class="dor-card cta-card">
+                    <div>
+                        <div class="dor-icon">
+                            <i class="ph ph-chat-circle-text"></i>
+                        </div>
+                        <h3 class="dor-title">Não sabe em qual caso se encaixa?</h3>
+                        <p class="dor-text">Conte sua situação no WhatsApp e receba uma análise inicial gratuita, sem compromisso e em linguagem simples.</p>
+                    </div>
+                    <a href="https://wa.me/5527997991108?text=Olá, vim pelo site da APD e quero entender se tenho direitos trabalhistas a receber." class="btn btn-primary" data-whatsapp-position="card-duvida-direitos" data-whatsapp-topic="duvida-direitos">
+                        TIRAR MINHA DÚVIDA
+                    </a>
                 </div>
             </div>
 
