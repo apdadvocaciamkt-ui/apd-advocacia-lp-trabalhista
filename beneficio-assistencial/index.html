@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Prévia local do formulário APD. Nenhuma resposta é enviada.">
-  <title>APD | Prévia do formulário</title>
+  <meta name="description" content="Formulário de benefício assistencial da APD Advogados.">
+  <title>APD | Benefício assistencial</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -72,8 +72,7 @@
     }
 
     .brand-mark,
-    .rail-copy,
-    .rail-number { position: relative; z-index: 1; }
+    .rail-copy { position: relative; z-index: 1; }
 
     .brand-mark {
       display: grid;
@@ -82,10 +81,9 @@
     }
 
     .brand-mark img {
-      width: 136px;
+      width: 220px;
       max-width: 100%;
       height: auto;
-      filter: brightness(0) invert(1);
     }
 
     .rail-rule {
@@ -102,23 +100,6 @@
       font-weight: 600;
       line-height: 1.08;
       letter-spacing: -0.035em;
-    }
-
-    .rail-number {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      color: rgba(255,255,255,0.72);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .rail-number strong {
-      color: var(--paper);
-      font-size: 42px;
-      letter-spacing: -0.06em;
     }
 
     .workspace {
@@ -148,7 +129,7 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .mobile-logo { display: none; width: 86px; height: auto; }
+    .mobile-logo { display: none; width: 150px; height: auto; }
 
     .progress-copy {
       min-width: 80px;
@@ -331,10 +312,14 @@
 
     .button {
       min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 22px;
       border: 1px solid transparent;
       border-radius: 999px;
       font-weight: 700;
+      text-decoration: none;
       cursor: pointer;
       transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
     }
@@ -365,23 +350,6 @@
       box-shadow: 0 16px 32px rgba(230, 38, 69, 0.24);
     }
 
-    .prototype-badge {
-      position: fixed;
-      right: 18px;
-      bottom: 14px;
-      z-index: 10;
-      padding: 8px 11px;
-      border: 1px solid rgba(31,33,36,0.10);
-      border-radius: 99px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(10px);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
     @media (max-width: 860px) {
       .page { grid-template-columns: 1fr; }
       .brand-rail { display: none; }
@@ -404,7 +372,6 @@
       .quiz-footer { align-items: flex-end; padding: 16px 20px 20px; }
       .footer-status { max-width: 150px; }
       .button { min-height: 46px; padding: 11px 17px; }
-      .prototype-badge { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -421,17 +388,16 @@
   <div class="page">
     <aside class="brand-rail" aria-label="APD Advogados">
       <div class="brand-mark">
-        <img src="assets/logo-apd.svg" alt="APD Advogados">
+        <img src="assets/apd-logo-horizontal-branca-fundo-vinho.png" alt="Almeida & Pandolfi Damico Advogados">
         <span class="rail-rule" aria-hidden="true"></span>
       </div>
-      <p class="rail-copy">Informação clara para um atendimento mais humano.</p>
-      <div class="rail-number"><strong id="railStep">00</strong><span>de 04</span></div>
+      <p class="rail-copy">Suas respostas nos ajudam a entender melhor o seu caso.</p>
     </aside>
 
     <main class="workspace">
-      <section class="quiz" aria-label="Prévia do formulário APD">
+      <section class="quiz" aria-label="Formulário de benefício assistencial APD">
         <header class="quiz-header">
-          <img class="mobile-logo" src="assets/logo-apd.svg" alt="APD Advogados">
+          <img class="mobile-logo" src="assets/apd-logo-horizontal-vinho-fundo-branco.png" alt="Almeida & Pandolfi Damico Advogados">
           <span class="progress-copy" id="progressCopy">Introdução</span>
           <div class="progress-track" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
             <div class="progress-bar" id="progressBar"></div>
@@ -441,11 +407,12 @@
         <div class="screen intro is-active" data-screen="0">
           <p class="eyebrow">Benefício assistencial</p>
           <h1>Quatro perguntas para organizar seu atendimento.</h1>
-          <p class="support">Responda com calma. Esta prévia não analisa elegibilidade e não substitui orientação jurídica.</p>
+          <p class="support">Responda com calma. O formulário não decide elegibilidade e não substitui orientação jurídica.</p>
           <div class="privacy-note">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5.4c0 4.6 3.2 8.8 7.5 9.6 4.3-.8 7.5-5 7.5-9.6V6L12 3Z" stroke="currentColor" stroke-width="1.7"/><path d="m9.2 12 1.8 1.8 3.9-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Modo de demonstração: nenhuma resposta é salva ou enviada.</span>
+            <span>A APD recebe apenas as opções marcadas. Não solicitamos nome, telefone, CPF, laudos ou documentos neste formulário.</span>
           </div>
+          <input class="is-hidden" type="text" id="website" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
         </div>
 
         <div class="screen" data-screen="1" data-question="q1">
@@ -493,13 +460,16 @@
           <div class="done-mark" aria-hidden="true">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.3 4.3L19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <p class="eyebrow">Demonstração concluída</p>
-          <h2>Prévia concluída. Nenhuma resposta foi enviada.</h2>
-          <p class="support">A integração só deve ser ativada depois da definição do destino autorizado e do texto de continuidade do atendimento.</p>
+          <p class="eyebrow">Tudo pronto!</p>
+          <h2>Agora vamos entender melhor o seu caso.</h2>
+          <p class="support"><strong>Suas respostas foram registradas com sucesso!</strong></p>
+          <p class="support">O próximo passo é falar com nossa equipe pelo WhatsApp para dar continuidade ao seu atendimento e verificar quais direitos podem se aplicar à sua situação.</p>
+          <p class="support">Clique no botão abaixo para continuar.</p>
+          <a class="button button-primary" id="whatsappButton" href="#" target="_blank" rel="noopener noreferrer">Continuar atendimento no WhatsApp</a>
         </div>
 
         <footer class="quiz-footer">
-          <p class="footer-status" id="footerStatus">Prévia local · envio desativado</p>
+          <p class="footer-status" id="footerStatus">As respostas serão registradas ao concluir</p>
           <div class="actions">
             <button class="button button-secondary is-hidden" id="backButton" type="button">Voltar</button>
             <button class="button button-primary" id="nextButton" type="button">Começar</button>
@@ -508,8 +478,6 @@
       </section>
     </main>
   </div>
-
-  <div class="prototype-badge">Protótipo local · sem envio</div>
 
   <script>
     (() => {
@@ -521,9 +489,15 @@
       const progressBar = document.querySelector("#progressBar");
       const progressTrack = document.querySelector("[role='progressbar']");
       const progressCopy = document.querySelector("#progressCopy");
-      const railStep = document.querySelector("#railStep");
       const footerStatus = document.querySelector("#footerStatus");
+      const whatsappButton = document.querySelector("#whatsappButton");
+      const endpoint = "https://dashboard-apd.apd-advocacia-mkt.workers.dev/api/beneficio-assistencial";
+      const whatsappMessage = "Olá! Acabei de responder ao formulário da APD Advogados e gostaria de continuar meu atendimento para entender melhor meus direitos.";
       let current = 0;
+      let submitting = false;
+      let submissionError = "";
+
+      whatsappButton.href = `https://wa.me/5527997991108?text=${encodeURIComponent(whatsappMessage)}`;
 
       const activeScreen = () => screens.find((screen) => Number(screen.dataset.screen) === current);
 
@@ -539,12 +513,12 @@
         progressBar.style.width = `${(answeredStep / 4) * 100}%`;
         progressTrack.setAttribute("aria-valuenow", String(answeredStep));
         progressCopy.textContent = current === 0 ? "Introdução" : current === 5 ? "Concluído" : `${current} de 4`;
-        railStep.textContent = current === 5 ? "04" : String(answeredStep).padStart(2, "0");
 
         backButton.classList.toggle("is-hidden", current === 0 || current === 5);
-        nextButton.disabled = current >= 1 && current <= 4 && !hasAnswer();
-        nextButton.textContent = current === 0 ? "Começar" : current === 4 ? "Concluir prévia" : current === 5 ? "Recomeçar" : "Continuar";
-        footerStatus.textContent = current === 5 ? "Respostas apagadas ao recarregar" : "Prévia local · envio desativado";
+        nextButton.classList.toggle("is-hidden", current === 5);
+        nextButton.disabled = submitting || (current >= 1 && current <= 4 && !hasAnswer());
+        nextButton.textContent = submitting ? "Registrando..." : current === 0 ? "Começar" : current === 4 ? "Enviar respostas" : "Continuar";
+        footerStatus.textContent = submissionError || (current === 5 ? "Respostas registradas com segurança" : "As respostas serão registradas ao concluir");
 
         if (focus) {
           const heading = activeScreen()?.querySelector("h1, h2");
@@ -555,14 +529,44 @@
         }
       };
 
-      const goNext = () => {
-        if (current === 5) {
-          document.querySelectorAll("input[type='radio']").forEach((input) => { input.checked = false; });
-          current = 0;
-          updateUi();
-          return;
-        }
+      const submitAnswers = async () => {
+        const payload = { website: document.querySelector("#website").value };
+        ["q1", "q2", "q3", "q4"].forEach((question) => {
+          payload[question] = document.querySelector(`input[name="${question}"]:checked`).value;
+        });
+
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 12000);
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        window.clearTimeout(timeout);
+
+        if (!response.ok) throw new Error("submission_failed");
+      };
+
+      const goNext = async () => {
+        if (submitting || current === 5) return;
         if (!hasAnswer()) return;
+
+        if (current === 4) {
+          submitting = true;
+          submissionError = "";
+          updateUi({ focus: false });
+          try {
+            await submitAnswers();
+          } catch {
+            submissionError = "Não foi possível registrar agora. Verifique sua conexão e tente novamente.";
+            submitting = false;
+            updateUi({ focus: false });
+            return;
+          }
+          submitting = false;
+        }
+
         current = Math.min(5, current + 1);
         updateUi();
       };
@@ -574,7 +578,11 @@
       });
 
       document.querySelectorAll("input[type='radio']").forEach((input) => {
-        input.addEventListener("change", () => { nextButton.disabled = false; });
+        input.addEventListener("change", () => {
+          submissionError = "";
+          nextButton.disabled = false;
+          footerStatus.textContent = "As respostas serão registradas ao concluir";
+        });
       });
 
       document.addEventListener("keydown", (event) => {
