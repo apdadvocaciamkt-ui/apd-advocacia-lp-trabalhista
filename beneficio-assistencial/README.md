@@ -2,29 +2,39 @@
 
 ## Estado
 
-Frontend incluído no repositório da landing APD na rota `/beneficio-assistencial/`. O fluxo funciona no navegador, mas permanece sem backend: nenhuma resposta é salva ou enviada.
+Formulário publicado na rota `/beneficio-assistencial/`, com backend no mesmo
+projeto Vercel em `POST /api/beneficio-assistencial`.
 
-## Padrão adotado
+As respostas somente são confirmadas na tela depois que a Vercel Function
+recebe e grava o registro em um Vercel Blob privado chamado
+`apd-beneficio-assistencial`.
 
-- Formato: quiz HTML próprio, uma pergunta por tela, seguindo o mecanismo já usado em `02. KETELHIN/01. Cliente/03. Ademicon/formulario/index.html`.
-- Identidade: logo APD existente, Maven Pro e a paleta já usada no site (`#E62645`, `#9C0B35`, `#1F2124`, `#F2F2F2`, branco).
-- Referências verificadas: site `https://apdadvogados.com.br/`, pasta de logos do Drive indicada na task e a imagem de referência indicada na task.
-- Conteúdo: somente as quatro perguntas e opções fornecidas no ClickUp, sem campos extras.
+## Dados armazenados
 
-## Privacidade e limites
+Cada envio cria um JSON imutável e privado em
+`beneficio-assistencial/AAAA-MM-DD/<id>.json`, contendo somente:
 
-- Não há `fetch`, formulário de envio, pixel, analytics, cookie ou `localStorage`/`sessionStorage`.
-- As escolhas existem apenas na memória da aba e são apagadas ao recarregar ou usar “Recomeçar”.
-- O protótipo não promete benefício, não calcula elegibilidade e não pede CPF, contato ou upload de laudos.
+- ID aleatório;
+- data e hora do envio;
+- origem fixa `beneficio-assistencial`;
+- os quatro códigos das opções marcadas (`q1` a `q4`).
 
-## Pendências antes de ativar o envio
+Não são armazenados nome, telefone, e-mail, CPF, laudos, documentos, endereço
+IP, user-agent ou outros identificadores do visitante. Os códigos de resposta
+não são enviados a pixels, analytics, CAPI ou LiderHub.
 
-1. Definir o destino autorizado das respostas (CRM, webhook, grupo ou conta do serviço Typeform).
-2. Definir o texto e a rota pós-envio.
-3. Definir retenção, acesso e tratamento das respostas sensíveis.
-4. Se a decisão mudar para a plataforma Typeform real, confirmar a conta proprietária e o plano existente; nenhuma conta ou assinatura foi criada.
+## Proteções
+
+- armazenamento Blob privado;
+- escrita somente pela Function autenticada via OIDC da Vercel;
+- validação estrita das opções permitidas;
+- limite de 4 KiB por requisição;
+- validação de mesma origem;
+- campo honeypot para reduzir spam;
+- resposta `no-store` e sem retorno da URL privada do registro.
 
 ## Arquivos
 
-- `index.html` — protótipo navegável.
-- `assets/logo-apd.svg` — cópia local do logo já existente no projeto APD.
+- `index.html` - interface do formulário e envio para a API;
+- `../api/beneficio-assistencial.js` - Vercel Function de validação e gravação;
+- `assets/` - logos oficiais usados no formulário.
