@@ -1,5 +1,10 @@
 node_modules/
 .vercel/
+.wrangler/
+.cloudflare/
+wrangler.toml
+wrangler.toml.audit
+.dev.vars
 .env
 .env.*
 !.env.example

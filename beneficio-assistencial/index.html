@@ -6,6 +6,42 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="Formulário de benefício assistencial da APD Advogados.">
   <title>APD | Benefício assistencial</title>
+
+  <!-- Google Tag Manager existente da APD. -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NQF8T9CG');</script>
+
+  <!-- Meta Pixel + PageView server-side com o mesmo event_id para deduplicação. -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1551416069977506');
+    (function () {
+      const eventId = crypto.randomUUID();
+      fbq('track', 'PageView', {}, { eventID: eventId });
+      fetch('/tracker', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          event_name: 'PageView',
+          event_id: eventId,
+          event_time: Math.floor(Date.now() / 1000),
+          event_source_url: window.location.href,
+          user_data: {},
+        }),
+      }).catch(() => {});
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1551416069977506&ev=PageView&noscript=1"></noscript>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -529,8 +565,41 @@
         }
       };
 
+      const trackLead = (eventId) => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "benefit_form_submit",
+          event_category: "lead",
+          page_path: window.location.pathname,
+          event_id: eventId,
+        });
+
+        try {
+          if (typeof fbq === "function") {
+            fbq("track", "Lead", {}, { eventID: eventId });
+          }
+        } catch {}
+
+        fetch("/tracker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify({
+            event_name: "Lead",
+            event_id: eventId,
+            event_time: Math.floor(Date.now() / 1000),
+            event_source_url: window.location.href,
+            user_data: {},
+          }),
+        }).catch(() => {});
+      };
+
       const submitAnswers = async () => {
-        const payload = { website: document.querySelector("#website").value };
+        const eventId = crypto.randomUUID();
+        const payload = {
+          event_id: eventId,
+          website: document.querySelector("#website").value,
+        };
         ["q1", "q2", "q3", "q4"].forEach((question) => {
           payload[question] = document.querySelector(`input[name="${question}"]:checked`).value;
         });
@@ -546,6 +615,7 @@
         window.clearTimeout(timeout);
 
         if (!response.ok) throw new Error("submission_failed");
+        trackLead(eventId);
       };
 
       const goNext = async () => {
@@ -590,6 +660,24 @@
           event.preventDefault();
           goNext();
         }
+      });
+
+      whatsappButton.addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "whatsapp_click",
+          event_category: "engagement",
+          page_path: window.location.pathname,
+          whatsapp_position: "benefit_form_success",
+        });
+        try {
+          if (typeof fbq === "function") {
+            fbq("trackCustom", "WhatsAppClick", {
+              page_path: window.location.pathname,
+              whatsapp_position: "benefit_form_success",
+            });
+          }
+        } catch {}
       });
 
       updateUi({ focus: false });

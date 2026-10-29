@@ -5,6 +5,11 @@
 Formulário publicado na rota `/beneficio-assistencial/`, com backend no mesmo
 projeto Vercel em `POST /api/beneficio-assistencial`.
 
+O mesmo caminho também funciona no projeto Cloudflare Pages isolado. Nesse
+ambiente, `functions/api/beneficio-assistencial.js` grava as respostas no D1
+`apd-landing-tracking-db` e relaciona o envio ao evento `Lead` pelo
+`event_id`. A implantação da Vercel permanece disponível como rollback.
+
 As respostas somente são confirmadas na tela depois que a Vercel Function
 recebe e grava o registro em um Vercel Blob privado chamado
 `apd-beneficio-assistencial`.
@@ -37,4 +42,9 @@ não são enviados a pixels, analytics, CAPI ou LiderHub.
 
 - `index.html` - interface do formulário e envio para a API;
 - `../api/beneficio-assistencial.js` - Vercel Function de validação e gravação;
+- `../functions/api/beneficio-assistencial.js` - Pages Function que grava no D1;
 - `assets/` - logos oficiais usados no formulário.
+
+Na Cloudflare, o evento genérico `Lead` e a atribuição de campanha são
+registrados separadamente. As quatro respostas continuam fora dos payloads
+enviados à Meta e ao GA4 e só aparecem no dashboard protegido `/dash`.

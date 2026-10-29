@@ -33,7 +33,20 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1551416069977506');
-        fbq('track', 'PageView');
+        const apdPageViewEventId = crypto.randomUUID();
+        fbq('track', 'PageView', {}, { eventID: apdPageViewEventId });
+        fetch('/tracker', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            keepalive: true,
+            body: JSON.stringify({
+                event_name: 'PageView',
+                event_id: apdPageViewEventId,
+                event_time: Math.floor(Date.now() / 1000),
+                event_source_url: window.location.href,
+                user_data: {}
+            })
+        }).catch(function () {});
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
@@ -1625,14 +1638,33 @@
                     eventCallback: goToWhatsApp,
                     eventTimeout: 700
                 };
+                const eventId = crypto.randomUUID();
 
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push(trackingData);
 
                 if (typeof fbq === 'function') {
-                    fbq('track', 'Lead');
-                    fbq('trackCustom', 'WhatsAppClick', trackingData);
+                    fbq('track', 'Lead', {}, { eventID: eventId });
+                    fbq('trackCustom', 'WhatsAppClick', {
+                        page_path: trackingData.page_path,
+                        page_hash: trackingData.page_hash,
+                        whatsapp_position: trackingData.whatsapp_position,
+                        whatsapp_topic: trackingData.whatsapp_topic
+                    });
                 }
+
+                fetch('/tracker', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    keepalive: true,
+                    body: JSON.stringify({
+                        event_name: 'Lead',
+                        event_id: eventId,
+                        event_time: Math.floor(Date.now() / 1000),
+                        event_source_url: window.location.href,
+                        user_data: {}
+                    })
+                }).catch(function () {});
 
                 setTimeout(goToWhatsApp, 700);
             });
