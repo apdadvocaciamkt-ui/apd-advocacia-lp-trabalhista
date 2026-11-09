@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#760725">
+  <meta name="description" content="Orientação jurídica previdenciária para benefício negado ou cortado, BPC/LOAS e aposentadoria. Atendimento online em todo o Brasil com o Dr. Daniel Borges Monteiro.">
+  <title>Advogado Previdenciarista | Dr. Daniel Borges Monteiro — APD Advocacia</title>
+
+  <!-- Google Tag Manager existente da APD. -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NQF8T9CG');</script>
+
+  <!-- Meta Pixel + PageView server-side com o mesmo event_id. -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1551416069977506');
+    (function () {
+      const eventId = crypto.randomUUID();
+      fbq('track', 'PageView', {}, { eventID: eventId });
+      fetch('/tracker', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          event_name: 'PageView',
+          event_id: eventId,
+          event_time: Math.floor(Date.now() / 1000),
+          event_source_url: window.location.href,
+          user_data: {}
+        })
+      }).catch(function () {});
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1551416069977506&ev=PageView&noscript=1"></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --wine-950: #52041a;
+      --wine-900: #760725;
+      --wine-800: #9c0b35;
+      --rose-600: #e62645;
+      --rose-100: #ffe7ec;
+      --ink: #231b1e;
+      --muted: #71666a;
+      --paper: #fffdfb;
+      --warm: #f5efeb;
+      --warm-deep: #ece1dc;
+      --line: #e4d9d4;
+      --white: #fff;
+      --shadow: 0 24px 64px rgba(82, 4, 26, 0.12);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Maven Pro", ui-sans-serif, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      transform: translateY(-180%);
+      padding: 10px 14px;
+      color: var(--white);
+      background: var(--wine-900);
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    :focus-visible {
+      outline: 3px solid var(--rose-600);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 22px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand img { width: 174px; height: auto; }
+
+    .header-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--wine-900);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .header-link svg { width: 20px; height: 20px; }
+
+    .hero {
+      position: relative;
+      min-height: 780px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 11% 76%, rgba(230, 38, 69, 0.09), transparent 25rem),
+        linear-gradient(115deg, #fffdfb 0%, #faf5f2 53%, #efe4df 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(82, 4, 26, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(82, 4, 26, 0.08) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(to right, transparent, #000 58%, #000);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(380px, 0.92fr);
+      align-items: end;
+      gap: 52px;
+      min-height: 780px;
+      padding-top: 140px;
+    }
+
+    .hero-copy { align-self: center; padding: 54px 0 74px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 22px;
+      color: var(--wine-800);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--rose-600);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 26px;
+      color: var(--wine-950);
+      font-size: clamp(3rem, 5.2vw, 5.35rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-accent {
+      display: block;
+      color: var(--rose-600);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.09em;
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-lead {
+      max-width: 640px;
+      margin-bottom: 34px;
+      color: #54484c;
+      font-size: clamp(1.06rem, 1.5vw, 1.2rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 16px 24px;
+      border: 0;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--wine-800);
+      box-shadow: 0 14px 30px rgba(118, 7, 37, 0.22);
+    }
+
+    .button-primary:hover { background: var(--wine-900); box-shadow: 0 18px 34px rgba(82, 4, 26, 0.28); }
+    .button svg { width: 21px; height: 21px; flex: 0 0 auto; }
+
+    .coverage {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .coverage svg { width: 20px; height: 20px; color: var(--wine-800); }
+
+    .hero-portrait {
+      position: relative;
+      align-self: stretch;
+      display: flex;
+      align-items: flex-end;
+      min-height: 640px;
+    }
+
+    .hero-portrait::before {
+      content: "PREVIDENCIÁRIO";
+      position: absolute;
+      right: -69px;
+      top: 45%;
+      z-index: 0;
+      color: rgba(118, 7, 37, 0.07);
+      font-size: 4.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      transform: rotate(90deg);
+      transform-origin: center;
+      white-space: nowrap;
+    }
+
+    .portrait-wash {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      width: 94%;
+      height: 82%;
+      border-radius: 46% 46% 0 0;
+      background: linear-gradient(180deg, rgba(230, 38, 69, 0.08), rgba(118, 7, 37, 0.16));
+      filter: blur(0.2px);
+    }
+
+    .hero-portrait img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-height: 680px;
+      object-fit: contain;
+      object-position: center bottom;
+      mix-blend-mode: multiply;
+      filter: contrast(1.02);
+    }
+
+    .lawyer-card {
+      position: absolute;
+      right: 18px;
+      bottom: 30px;
+      z-index: 3;
+      width: min(330px, 78%);
+      padding: 19px 22px;
+      color: var(--white);
+      background: rgba(82, 4, 26, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .lawyer-card strong { display: block; margin-bottom: 2px; font-size: 1rem; }
+    .lawyer-card span { display: block; color: rgba(255,255,255,0.75); font-size: 0.82rem; }
+
+    .trust-strip {
+      position: relative;
+      z-index: 5;
+      margin-top: -1px;
+      color: var(--white);
+      background: var(--wine-900);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 108px;
+      padding: 24px 34px;
+      border-right: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .trust-item:last-child { border-right: 0; }
+    .trust-item svg { width: 29px; height: 29px; flex: 0 0 auto; color: #ff8da1; }
+    .trust-item strong { display: block; margin-bottom: 2px; font-size: 0.96rem; }
+    .trust-item span { display: block; color: rgba(255,255,255,0.72); font-size: 0.8rem; line-height: 1.45; }
+
+    section { padding: 110px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.65fr);
+      align-items: end;
+      justify-content: space-between;
+      gap: 50px;
+      margin-bottom: 58px;
+    }
+
+    .section-head h2,
+    .authority-copy h2,
+    .steps-copy h2,
+    .final-copy h2 {
+      margin-bottom: 0;
+      color: var(--wine-950);
+      font-size: clamp(2.35rem, 4vw, 4.1rem);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); font-size: 1.02rem; }
+
+    .situations { background: var(--paper); }
+
+    .situation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .situation {
+      position: relative;
+      min-height: 250px;
+      padding: 34px 36px 38px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      transition: background-color 180ms ease, transform 180ms ease;
+    }
+
+    .situation:hover { z-index: 2; background: #fff8f7; transform: translateY(-3px); }
+
+    .situation-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 28px;
+      color: var(--wine-800);
+      background: var(--rose-100);
+      border-radius: 50%;
+    }
+
+    .situation-icon svg { width: 24px; height: 24px; }
+
+    .situation h3 { margin-bottom: 10px; color: var(--wine-950); font-size: 1.42rem; line-height: 1.2; }
+    .situation p { margin-bottom: 0; color: var(--muted); font-size: 0.96rem; }
+
+    .situations-action { display: flex; justify-content: center; margin-top: 42px; }
+
+    .authority {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--wine-950);
+    }
+
+    .authority::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 86% 28%, rgba(230, 38, 69, 0.35), transparent 24rem),
+        linear-gradient(135deg, transparent 0 67%, rgba(255,255,255,0.035) 67% 100%);
+      pointer-events: none;
+    }
+
+    .authority-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.62fr);
+      gap: 90px;
+      align-items: center;
+    }
+
+    .authority .eyebrow { color: #ff9aab; }
+    .authority-copy h2 { margin-bottom: 28px; color: var(--white); }
+    .authority-copy p { max-width: 720px; color: rgba(255,255,255,0.72); }
+
+    .authority-signature {
+      position: relative;
+      padding: 36px 0 36px 38px;
+      border-left: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .authority-signature::before {
+      content: "“";
+      position: absolute;
+      top: -58px;
+      left: 24px;
+      color: rgba(255,255,255,0.08);
+      font-family: Georgia, serif;
+      font-size: 12rem;
+      line-height: 1;
+    }
+
+    .authority-signature strong { position: relative; display: block; margin-bottom: 8px; font-size: 1.45rem; line-height: 1.25; }
+    .authority-signature span { position: relative; display: block; color: #ff9aab; font-size: 0.87rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .authority .button { margin-top: 34px; color: var(--wine-950); background: var(--white); box-shadow: none; }
+    .authority .button:hover { background: var(--rose-100); }
+
+    .steps { background: var(--warm); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1.1fr);
+      gap: 86px;
+      align-items: start;
+    }
+
+    .steps-copy { position: sticky; top: 36px; }
+    .steps-copy h2 { margin-bottom: 24px; }
+    .steps-copy p { color: var(--muted); }
+
+    .step-list { counter-reset: steps; }
+
+    .step {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 24px;
+      padding: 34px 0;
+      border-top: 1px solid #d9cbc5;
+    }
+
+    .step:last-child { border-bottom: 1px solid #d9cbc5; }
+
+    .step::before {
+      content: "0" counter(steps);
+      color: var(--rose-600);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .step h3 { margin-bottom: 8px; color: var(--wine-950); font-size: 1.35rem; line-height: 1.25; }
+    .step p { margin-bottom: 0; color: var(--muted); font-size: 0.96rem; }
+    .steps .button { margin-top: 34px; }
+
+    .final-cta { padding: 0; background: var(--paper); }
+
+    .final-panel {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+      gap: 70px;
+      align-items: center;
+      min-height: 480px;
+      padding: 76px 84px;
+      color: var(--white);
+      background: linear-gradient(125deg, var(--wine-900), var(--wine-950));
+      border-radius: var(--radius-lg);
+      transform: translateY(72px);
+      box-shadow: var(--shadow);
+    }
+
+    .final-panel::after {
+      content: "APD";
+      position: absolute;
+      right: -18px;
+      bottom: -118px;
+      color: rgba(255,255,255,0.05);
+      font-size: 17rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.08em;
+    }
+
+    .final-copy { position: relative; z-index: 1; }
+    .final-copy h2 { margin-bottom: 24px; color: var(--white); }
+    .final-copy p { max-width: 710px; margin-bottom: 32px; color: rgba(255,255,255,0.72); }
+    .final-copy .button { color: var(--wine-950); background: var(--white); box-shadow: none; }
+    .final-copy .button:hover { background: var(--rose-100); }
+
+    .final-note {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+    }
+
+    .final-note strong { display: block; margin-bottom: 8px; font-size: 1.05rem; }
+    .final-note span { display: block; color: rgba(255,255,255,0.68); font-size: 0.9rem; }
+
+    footer {
+      padding: 160px 0 42px;
+      background: #1d1518;
+      color: rgba(255,255,255,0.66);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-brand img { width: 164px; filter: brightness(0) invert(1); opacity: 0.92; }
+    .footer-brand p { margin: 16px 0 0; font-size: 0.9rem; }
+    .footer-contact { text-align: right; }
+    .footer-contact strong { display: block; margin-bottom: 5px; color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 36px;
+      padding-top: 28px;
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    .footer-bottom p { max-width: 760px; margin-bottom: 0; }
+    .footer-bottom a { white-space: nowrap; color: rgba(255,255,255,0.78); text-underline-offset: 4px; }
+
+    .mobile-whatsapp {
+      display: none;
+      position: fixed;
+      right: 16px;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      left: 16px;
+      z-index: 50;
+      min-height: 56px;
+      color: var(--white);
+      background: var(--wine-800);
+      border-radius: 12px;
+      box-shadow: 0 18px 42px rgba(82, 4, 26, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(120%);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .mobile-whatsapp.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) and (min-width: 761px) and (max-height: 820px) {
+      .hero,
+      .hero-inner { min-height: 690px; }
+      .hero-inner { padding-top: 94px; }
+      .hero-copy { padding: 24px 0 36px; }
+      .hero-portrait { min-height: 540px; }
+      .hero-portrait img { max-height: 590px; }
+    }
+
+    @media (max-width: 980px) {
+      .hero { min-height: auto; }
+      .hero-inner { grid-template-columns: 1fr 0.72fr; gap: 20px; min-height: 720px; }
+      .hero-copy { padding-bottom: 58px; }
+      .hero-portrait { min-height: 560px; }
+      .hero-portrait::before { display: none; }
+      .lawyer-card { right: 0; }
+      .trust-item { padding-inline: 22px; }
+      .section-head { grid-template-columns: 1fr; gap: 22px; }
+      .authority-grid { gap: 48px; }
+      .steps-grid { gap: 52px; }
+      .final-panel { padding-inline: 52px; }
+    }
+
+    @media (max-width: 760px) {
+      body { font-size: 16px; padding-bottom: 80px; }
+      .container { width: min(calc(100% - 32px), var(--max)); }
+      .site-header { padding: 16px 0; }
+      .brand img { width: 136px; }
+      .header-link { font-size: 0; }
+      .header-link svg { width: 25px; height: 25px; }
+      .hero-inner { display: flex; flex-direction: column; align-items: stretch; min-height: auto; padding-top: 106px; }
+      .hero-copy { padding: 38px 0 0; }
+      h1 { font-size: clamp(2.75rem, 14vw, 4rem); }
+      .hero-lead { margin-bottom: 26px; }
+      .hero-actions { align-items: stretch; }
+      .hero-actions .button { width: 100%; }
+      .coverage { justify-content: center; width: 100%; }
+      .hero-portrait { align-self: center; width: min(100%, 470px); min-height: 440px; margin-top: 8px; }
+      .hero-portrait img { max-height: 510px; }
+      .portrait-wash { right: 6%; width: 88%; height: 78%; }
+      .lawyer-card { right: 0; bottom: 18px; width: min(315px, 82%); }
+      .trust-grid { grid-template-columns: 1fr; }
+      .trust-item { min-height: 92px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.14); }
+      .trust-item:last-child { border-bottom: 0; }
+      section { padding: 78px 0; }
+      .section-head { margin-bottom: 38px; }
+      .section-head h2, .authority-copy h2, .steps-copy h2, .final-copy h2 { font-size: clamp(2.2rem, 11vw, 3.25rem); }
+      .situation-grid { grid-template-columns: 1fr; }
+      .situation { min-height: auto; padding: 30px; }
+      .authority-grid { grid-template-columns: 1fr; gap: 50px; }
+      .authority-signature { padding-left: 26px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 34px; }
+      .steps-copy { position: static; }
+      .step { grid-template-columns: 48px 1fr; gap: 12px; }
+      .final-panel { grid-template-columns: 1fr; gap: 34px; min-height: 0; padding: 54px 30px; border-radius: 22px; transform: translateY(48px); }
+      .final-panel::after { font-size: 10rem; bottom: -62px; }
+      footer { padding-top: 108px; }
+      .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
+      .footer-contact { text-align: left; }
+      .mobile-whatsapp { display: inline-flex; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="site-header" aria-label="Cabeçalho principal">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="APD Advocacia — página inicial">
+        <img src="/assets/images/LOGO-ADP.svg" alt="APD Almeida Pandolfi Damico Advogados" width="176" height="73">
+      </a>
+      <a class="header-link" href="#atendimento">
+        Falar sobre meu caso
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Direito previdenciário</p>
+          <h1 id="hero-title">O INSS negou seu benefício? <span class="hero-accent">Você pode ter outras possibilidades.</span></h1>
+          <p class="hero-lead">Uma negativa do INSS nem sempre significa o fim do seu pedido. O Dr. Daniel Borges Monteiro pode analisar sua situação e orientar sobre as alternativas previstas em lei.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="hero" data-whatsapp-topic="direito-previdenciario">
+              Falar com o Dr. Daniel
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <span class="coverage">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9h17M3.5 15h17M12 3c2.1 2.45 3.2 5.45 3.2 9S14.1 18.55 12 21c-2.1-2.45-3.2-5.45-3.2-9S9.9 5.45 12 3Z" stroke="currentColor" stroke-width="1.5"/></svg>
+              Atendimento online em todo o Brasil
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-portrait" aria-label="Dr. Daniel Borges Monteiro">
+          <div class="portrait-wash" aria-hidden="true"></div>
+          <img src="/assets/images/daniel_monteiro.webp" alt="Retrato profissional do Dr. Daniel Borges Monteiro" width="768" height="1333">
+          <div class="lawyer-card">
+            <strong>Dr. Daniel Borges Monteiro</strong>
+            <span>Advogado previdenciarista • OAB/ES 16.544</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip" aria-label="Informações do atendimento">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-3.4 7-10V5l-7-2-7 2v6c0 6.6 7 10 7 10Z" stroke="currentColor" stroke-width="1.6"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>Orientação individualizada</strong><span>Cada situação é avaliada conforme sua história e documentação.</span></div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div><strong>Contato direto pelo WhatsApp</strong><span>Conte o que aconteceu e entenda o próximo passo.</span></div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div><strong>OAB desde 2009</strong><span>Atuação jurídica com foco em questões previdenciárias.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="situations" aria-labelledby="situations-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Seu momento</p>
+            <h2 id="situations-title">Está passando por alguma dessas situações?</h2>
+          </div>
+          <p>Identificar o que aconteceu é o primeiro passo para compreender quais caminhos jurídicos podem existir no seu caso.</p>
+        </div>
+
+        <div class="situation-grid">
+          <article class="situation">
+            <div class="situation-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h8l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v5h4M10 13h6M10 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <h3>Benefício negado</h3>
+            <p>Solicitou um benefício e recebeu uma resposta negativa do INSS?</p>
+          </article>
+          <article class="situation">
+            <div class="situation-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 8.5 15.5 15.5M15.5 8.5l-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <h3>Benefício cortado</h3>
+            <p>Recebia normalmente, mas o pagamento foi suspenso ou interrompido?</p>
+          </article>
+          <article class="situation">
+            <div class="situation-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20v-9l8-6 8 6v9H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 20v-5h6v5M7 9V5h3v2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <h3>BPC/LOAS</h3>
+            <p>Precisa entender se você ou alguém da sua família atende aos requisitos do benefício?</p>
+          </article>
+          <article class="situation">
+            <div class="situation-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 21v-9h14v9M8 12V8a4 4 0 0 1 8 0v4M3 21h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <h3>Aposentadoria</h3>
+            <p>Tem dúvidas sobre seus direitos ou sobre quando pode se aposentar?</p>
+          </article>
+        </div>
+
+        <div class="situations-action">
+          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="situacoes" data-whatsapp-topic="direito-previdenciario">Quero entender meus direitos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="authority" aria-labelledby="authority-title">
+      <div class="container authority-grid">
+        <div class="authority-copy">
+          <p class="eyebrow">Autoridade e confiança</p>
+          <h2 id="authority-title">Seu direito merece atenção. Seu caso merece ser ouvido.</h2>
+          <p>O Dr. Daniel Borges Monteiro atua em Direito Previdenciário, oferecendo orientação jurídica individualizada para quem enfrenta dificuldades com o INSS ou precisa compreender seus direitos.</p>
+          <p>A análise considera sua história, a documentação disponível e as possibilidades previstas em lei, sem promessas de resultado.</p>
+          <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="autoridade" data-whatsapp-topic="direito-previdenciario">Conversar sobre meu caso</a>
+        </div>
+        <div class="authority-signature">
+          <strong>Dr. Daniel Borges Monteiro</strong>
+          <span>Advogado • OAB/ES 16.544</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" aria-labelledby="steps-title">
+      <div class="container steps-grid">
+        <div class="steps-copy">
+          <p class="eyebrow">Como funciona</p>
+          <h2 id="steps-title">Simples, direto e sem complicação.</h2>
+          <p>O contato começa pelo WhatsApp e avança conforme as necessidades do seu caso.</p>
+          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="como-funciona" data-whatsapp-topic="direito-previdenciario">Iniciar meu atendimento</a>
+        </div>
+        <div class="step-list">
+          <article class="step">
+            <div><h3>Conte o que aconteceu</h3><p>Entre em contato pelo WhatsApp e explique sua situação.</p></div>
+          </article>
+          <article class="step">
+            <div><h3>Entenda suas possibilidades</h3><p>Seu caso poderá ser avaliado para identificar os caminhos jurídicos aplicáveis.</p></div>
+          </article>
+          <article class="step">
+            <div><h3>Saiba quais são os próximos passos</h3><p>Receba orientações sobre como proceder de acordo com sua situação.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="atendimento" aria-labelledby="final-title">
+      <div class="container">
+        <div class="final-panel">
+          <div class="final-copy">
+            <p class="eyebrow">Orientação previdenciária</p>
+            <h2 id="final-title">Não fique com dúvidas sobre seu benefício.</h2>
+            <p>Se o INSS negou seu pedido, interrompeu seu pagamento ou você precisa de orientação previdenciária, procure compreender quais alternativas existem para o seu caso.</p>
+            <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="cta-final" data-whatsapp-topic="direito-previdenciario">Falar sobre meu benefício</a>
+          </div>
+          <div class="final-note">
+            <strong>Atendimento online em todo o Brasil</strong>
+            <span>Converse com o Dr. Daniel Borges Monteiro pelo WhatsApp e explique sua situação.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/images/LOGO-ADP.svg" alt="APD Almeida Pandolfi Damico Advogados" width="176" height="73">
+          <p>Advocacia previdenciária • Atendimento online</p>
+        </div>
+        <div class="footer-contact">
+          <strong>Dr. Daniel Borges Monteiro</strong>
+          <span>OAB/ES 16.544 • OAB desde 2009</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Atendimento jurídico individualizado. As informações desta página têm caráter geral e não substituem a análise do caso concreto. Não há garantia de concessão de benefício ou resultado.</p>
+        <a href="https://apdadvogados.com.br/politicas">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="button mobile-whatsapp" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="sticky-mobile" data-whatsapp-topic="direito-previdenciario">Falar com o Dr. Daniel</a>
+
+  <script>
+    const heroWhatsApp = document.querySelector('a[data-whatsapp-position="hero"]');
+    const mobileWhatsApp = document.querySelector('.mobile-whatsapp');
+    if (heroWhatsApp && mobileWhatsApp) {
+      if ('IntersectionObserver' in window) {
+        const stickyObserver = new IntersectionObserver(function (entries) {
+          const heroButtonVisible = entries[0] && entries[0].isIntersecting;
+          mobileWhatsApp.classList.toggle('is-visible', !heroButtonVisible);
+        }, { threshold: 0.15 });
+        stickyObserver.observe(heroWhatsApp);
+      } else {
+        const updateSticky = function () {
+          mobileWhatsApp.classList.toggle('is-visible', window.scrollY > 620);
+        };
+        updateSticky();
+        window.addEventListener('scroll', updateSticky, { passive: true });
+      }
+    }
+
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) return;
+        event.preventDefault();
+
+        const target = this.href;
+        let navigated = false;
+        const navigate = function () {
+          if (navigated) return;
+          navigated = true;
+          window.location.href = target;
+        };
+        const eventId = crypto.randomUUID();
+        const trackingData = {
+          event: 'whatsapp_click',
+          event_category: 'lead',
+          event_label: this.textContent.trim(),
+          page_path: window.location.pathname,
+          whatsapp_position: this.dataset.whatsappPosition || 'unknown',
+          whatsapp_topic: this.dataset.whatsappTopic || 'direito-previdenciario',
+          eventCallback: navigate,
+          eventTimeout: 700
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(trackingData);
+
+        try {
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {}, { eventID: eventId });
+            fbq('trackCustom', 'WhatsAppClick', {
+              page_path: trackingData.page_path,
+              whatsapp_position: trackingData.whatsapp_position,
+              whatsapp_topic: trackingData.whatsapp_topic
+            });
+          }
+        } catch (_) {}
+
+        fetch('/tracker', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          keepalive: true,
+          body: JSON.stringify({
+            event_name: 'Lead',
+            event_id: eventId,
+            event_time: Math.floor(Date.now() / 1000),
+            event_source_url: window.location.href,
+            user_data: {}
+          })
+        }).catch(function () {});
+
+        setTimeout(navigate, 700);
+      });
+    });
+  </script>
+</body>
+</html>
