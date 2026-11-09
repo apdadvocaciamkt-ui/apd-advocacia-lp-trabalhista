@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#760725">
   <meta name="description" content="Orientação jurídica previdenciária para benefício negado ou cortado, BPC/LOAS e aposentadoria. Atendimento online em todo o Brasil com o Dr. Daniel Borges Monteiro.">
-  <title>Advogado Previdenciarista | Dr. Daniel Borges Monteiro — APD Advocacia</title>
+  <title>Advogado Previdenciarista | Dr. Daniel Borges Monteiro</title>
 
-  <!-- Google Tag Manager existente da APD. -->
+  <!-- Google Tag Manager existente. -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -123,12 +123,28 @@
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
+      display: inline-grid;
+      gap: 1px;
       text-decoration: none;
     }
 
-    .brand img { width: 174px; height: auto; }
+    .brand-name {
+      color: var(--wine-950);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 600;
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+    }
+
+    .brand-meta {
+      color: var(--wine-900);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.105em;
+      text-transform: uppercase;
+    }
 
     .header-link {
       display: inline-flex;
@@ -533,12 +549,12 @@
     }
 
     .final-panel::after {
-      content: "APD";
+      content: "DANIEL";
       position: absolute;
       right: -18px;
       bottom: -118px;
       color: rgba(255,255,255,0.05);
-      font-size: 17rem;
+      font-size: 12rem;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.08em;
@@ -578,8 +594,9 @@
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
-    .footer-brand img { width: 164px; filter: brightness(0) invert(1); opacity: 0.92; }
-    .footer-brand p { margin: 16px 0 0; font-size: 0.9rem; }
+    .footer-brand .brand-name { color: var(--white); font-size: 2.35rem; }
+    .footer-brand .brand-meta { color: rgba(255,255,255,0.72); }
+    .footer-brand p { margin: 14px 0 0; font-size: 0.9rem; }
     .footer-contact { text-align: right; }
     .footer-contact strong { display: block; margin-bottom: 5px; color: var(--white); }
 
@@ -646,7 +663,8 @@
       body { font-size: 16px; padding-bottom: 80px; }
       .container { width: min(calc(100% - 32px), var(--max)); }
       .site-header { padding: 16px 0; }
-      .brand img { width: 136px; }
+      .brand-name { font-size: 1.72rem; }
+      .brand-meta { font-size: 0.56rem; }
       .header-link { font-size: 0; }
       .header-link svg { width: 25px; height: 25px; }
       .hero-inner { display: flex; flex-direction: column; align-items: stretch; min-height: auto; padding-top: 106px; }
@@ -692,8 +710,9 @@
 
   <header class="site-header" aria-label="Cabeçalho principal">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="APD Advocacia — página inicial">
-        <img src="/assets/images/LOGO-ADP.svg" alt="APD Almeida Pandolfi Damico Advogados" width="176" height="73">
+      <a class="brand" href="/previdenciario/" aria-label="Dr. Daniel Borges Monteiro — página inicial">
+        <span class="brand-name">Dr. Daniel</span>
+        <span class="brand-meta">Borges Monteiro · OAB/ES 16.544</span>
       </a>
       <a class="header-link" href="#atendimento">
         Falar sobre meu caso
@@ -710,7 +729,7 @@
           <h1 id="hero-title">O INSS negou seu benefício? <span class="hero-accent">Você pode ter outras possibilidades.</span></h1>
           <p class="hero-lead">Uma negativa do INSS nem sempre significa o fim do seu pedido. O Dr. Daniel Borges Monteiro pode analisar sua situação e orientar sobre as alternativas previstas em lei.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="hero" data-whatsapp-topic="direito-previdenciario">
+            <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="hero" data-whatsapp-topic="direito-previdenciario">
               Falar com o Dr. Daniel
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -783,7 +802,7 @@
         </div>
 
         <div class="situations-action">
-          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="situacoes" data-whatsapp-topic="direito-previdenciario">Quero entender meus direitos</a>
+          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="situacoes" data-whatsapp-topic="direito-previdenciario">Quero entender meus direitos</a>
         </div>
       </div>
     </section>
@@ -795,7 +814,7 @@
           <h2 id="authority-title">Seu direito merece atenção. Seu caso merece ser ouvido.</h2>
           <p>O Dr. Daniel Borges Monteiro atua em Direito Previdenciário, oferecendo orientação jurídica individualizada para quem enfrenta dificuldades com o INSS ou precisa compreender seus direitos.</p>
           <p>A análise considera sua história, a documentação disponível e as possibilidades previstas em lei, sem promessas de resultado.</p>
-          <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="autoridade" data-whatsapp-topic="direito-previdenciario">Conversar sobre meu caso</a>
+          <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="autoridade" data-whatsapp-topic="direito-previdenciario">Conversar sobre meu caso</a>
         </div>
         <div class="authority-signature">
           <strong>Dr. Daniel Borges Monteiro</strong>
@@ -810,7 +829,7 @@
           <p class="eyebrow">Como funciona</p>
           <h2 id="steps-title">Simples, direto e sem complicação.</h2>
           <p>O contato começa pelo WhatsApp e avança conforme as necessidades do seu caso.</p>
-          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="como-funciona" data-whatsapp-topic="direito-previdenciario">Iniciar meu atendimento</a>
+          <a class="button button-primary" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="como-funciona" data-whatsapp-topic="direito-previdenciario">Iniciar meu atendimento</a>
         </div>
         <div class="step-list">
           <article class="step">
@@ -833,7 +852,7 @@
             <p class="eyebrow">Orientação previdenciária</p>
             <h2 id="final-title">Não fique com dúvidas sobre seu benefício.</h2>
             <p>Se o INSS negou seu pedido, interrompeu seu pagamento ou você precisa de orientação previdenciária, procure compreender quais alternativas existem para o seu caso.</p>
-            <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="cta-final" data-whatsapp-topic="direito-previdenciario">Falar sobre meu benefício</a>
+            <a class="button" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="cta-final" data-whatsapp-topic="direito-previdenciario">Falar sobre meu benefício</a>
           </div>
           <div class="final-note">
             <strong>Atendimento online em todo o Brasil</strong>
@@ -848,12 +867,15 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/images/LOGO-ADP.svg" alt="APD Almeida Pandolfi Damico Advogados" width="176" height="73">
+          <div class="brand" aria-label="Dr. Daniel Borges Monteiro">
+            <span class="brand-name">Dr. Daniel</span>
+            <span class="brand-meta">Borges Monteiro · OAB/ES 16.544</span>
+          </div>
           <p>Advocacia previdenciária • Atendimento online</p>
         </div>
         <div class="footer-contact">
-          <strong>Dr. Daniel Borges Monteiro</strong>
-          <span>OAB/ES 16.544 • OAB desde 2009</span>
+          <strong>Atendimento online em todo o Brasil</strong>
+          <span>Advocacia previdenciária • OAB desde 2009</span>
         </div>
       </div>
       <div class="footer-bottom">
@@ -863,7 +885,7 @@
     </div>
   </footer>
 
-  <a class="button mobile-whatsapp" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20APD%20e%20gostaria%20de%20falar%20com%20o%20Dr.%20Daniel%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="sticky-mobile" data-whatsapp-topic="direito-previdenciario">Falar com o Dr. Daniel</a>
+  <a class="button mobile-whatsapp" href="https://wa.me/5527997991108?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Dr.%20Daniel%20e%20gostaria%20de%20falar%20sobre%20meu%20benef%C3%ADcio%20previdenci%C3%A1rio." data-whatsapp-position="sticky-mobile" data-whatsapp-topic="direito-previdenciario">Falar com o Dr. Daniel</a>
 
   <script>
     const heroWhatsApp = document.querySelector('a[data-whatsapp-position="hero"]');
