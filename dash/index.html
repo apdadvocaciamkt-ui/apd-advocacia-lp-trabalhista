@@ -243,14 +243,16 @@
               <th class="text-left py-2 pr-4">Tipo</th>
               <th class="text-left py-2 pr-4">Respostas</th>
               <th class="text-left py-2 pr-4">Source</th>
-              <th class="text-left py-2 pr-4">Campaign</th>
               <th class="text-left py-2 pr-4">Medium</th>
+              <th class="text-left py-2 pr-4">Campaign</th>
+              <th class="text-left py-2 pr-4">Content</th>
+              <th class="text-left py-2 pr-4">Term</th>
               <th class="text-center py-2 pr-4">Meta</th>
               <th class="text-center py-2">GA4</th>
             </tr>
           </thead>
           <tbody id="leads-tbody">
-            <tr><td colspan="8" class="py-6 text-center text-[color:var(--muted)]">Carregando…</td></tr>
+            <tr><td colspan="10" class="py-6 text-center text-[color:var(--muted)]">Carregando…</td></tr>
           </tbody>
         </table>
       </div>
@@ -502,7 +504,7 @@
     qs('#kpi-leads').textContent = fmtInt((data.leads || []).length);
     const tbody = qs('#leads-tbody');
     if (!data.leads || data.leads.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="py-6 text-center text-[color:var(--muted)]">Nenhum lead neste período.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="10" class="py-6 text-center text-[color:var(--muted)]">Nenhum lead neste período.</td></tr>';
       return;
     }
     tbody.innerHTML = data.leads.map((l, i) => `
@@ -511,8 +513,10 @@
         <td class="py-2 pr-4">${escapeHtml(leadType(l))}</td>
         <td class="py-2 pr-4 text-[color:var(--dim)]">${l.form_submission_id ? '4 respostas' : '-'}</td>
         <td class="py-2 pr-4">${escapeHtml(l.utm_source || '(direct)')}</td>
-        <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_campaign || '—')}</td>
         <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_medium || '—')}</td>
+        <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_campaign || '—')}</td>
+        <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_content || '—')}</td>
+        <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_term || '—')}</td>
         <td class="py-2 pr-4 text-center">${l.meta_response_ok ? '<span class="accent-green">✓</span>' : '<span class="accent-red">✕</span>'}</td>
         <td class="py-2 text-center">${l.ga4_response_ok ? '<span class="accent-green">✓</span>' : '<span class="accent-red">✕</span>'}</td>
       </tr>
@@ -573,6 +577,7 @@
     }
 
     const sections = [
+      ...(kind === 'lead' ? [renderUtmAttribution(row)] : []),
       renderPayloadSection('Meta CAPI', {
         status_code: row.meta_status_code,
         response_ok: row.meta_response_ok,
@@ -669,6 +674,12 @@
     return `
       <div>
         <div class="font-semibold text-sm mb-2">Respostas do formulário</div>
+        <div class="grid sm:grid-cols-2 gap-2 mb-3">
+          ${renderDetailField('Nome', row.form_name || '—')}
+          ${renderDetailField('WhatsApp', row.form_phone ? `+${row.form_phone}` : '—')}
+          ${renderDetailField('CRM', row.crm_status || 'pendente')}
+          ${renderDetailField('ID do contato', row.crm_contact_id || '—')}
+        </div>
         <div class="space-y-2">
           ${questions.map(([question, code]) => `
             <div class="border border-[color:var(--border)] rounded-lg p-3">
@@ -678,6 +689,31 @@
           `).join('')}
         </div>
         <div class="text-xs text-[color:var(--muted)] mt-2">Estas respostas ficam somente neste banco privado e não são enviadas à Meta ou ao GA4.</div>
+      </div>
+    `;
+  }
+
+  function renderUtmAttribution(row) {
+    return `
+      <div>
+        <div class="font-semibold text-sm mb-2">Atribuição UTM</div>
+        <div class="grid sm:grid-cols-2 gap-2">
+          ${renderDetailField('utm_source', row.utm_source || '(direct)')}
+          ${renderDetailField('utm_medium', row.utm_medium || '—')}
+          ${renderDetailField('utm_campaign', row.utm_campaign || '—')}
+          ${renderDetailField('utm_content', row.utm_content || '—')}
+          ${renderDetailField('utm_term', row.utm_term || '—')}
+          ${renderDetailField('Landing URL', row.landing_url || '—')}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDetailField(label, value) {
+    return `
+      <div class="border border-[color:var(--border)] rounded-lg p-3 min-w-0">
+        <div class="text-xs text-[color:var(--muted)]">${escapeHtml(label)}</div>
+        <div class="text-sm mono mt-1 break-all">${escapeHtml(value)}</div>
       </div>
     `;
   }

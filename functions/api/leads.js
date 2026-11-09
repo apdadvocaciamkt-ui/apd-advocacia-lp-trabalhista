@@ -56,11 +56,16 @@ export async function onRequestGet(context) {
         s.referrer,
         s.landing_url,
         b.id AS form_submission_id,
+        b.name AS form_name,
+        b.phone AS form_phone,
         b.q1,
         b.q2,
         b.q3,
         b.q4,
-        b.source_path AS form_source_path
+        b.source_path AS form_source_path,
+        b.crm_status,
+        b.crm_contact_id,
+        b.crm_synced_at
       FROM event_log e
       LEFT JOIN sessions s ON e.session_id = s.session_id
       LEFT JOIN benefit_form_submissions b ON e.event_id = b.event_id

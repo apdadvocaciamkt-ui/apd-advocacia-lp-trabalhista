@@ -2,37 +2,41 @@
 
 ## Estado
 
-Formulário publicado na rota `/beneficio-assistencial/`, com backend no mesmo
-projeto Vercel em `POST /api/beneficio-assistencial`.
+Formulário publicado na rota `/beneficio-assistencial/`, com backend em
+`POST /api/beneficio-assistencial`.
 
 O mesmo caminho também funciona no projeto Cloudflare Pages isolado. Nesse
 ambiente, `functions/api/beneficio-assistencial.js` grava as respostas no D1
-`apd-landing-tracking-db` e relaciona o envio ao evento `Lead` pelo
-`event_id`. A implantação da Vercel permanece disponível como rollback.
+`apd-landing-tracking-db`, relaciona o envio ao evento `Lead` pelo `event_id`
+e sincroniza o contato com o LiderHub. A implantação da Vercel permanece
+disponível como rollback, mas a integração CRM é canônica no Cloudflare.
 
-As respostas somente são confirmadas na tela depois que a Vercel Function
-recebe e grava o registro em um Vercel Blob privado chamado
-`apd-beneficio-assistencial`.
+O sucesso somente é confirmado na tela depois que o registro é gravado e o
+contato é criado ou atualizado no LiderHub.
 
 ## Dados armazenados
 
-Cada envio cria um JSON imutável e privado em
-`beneficio-assistencial/AAAA-MM-DD/<id>.json`, contendo somente:
+Cada envio grava no D1:
 
 - ID aleatório;
 - data e hora do envio;
-- origem fixa `beneficio-assistencial`;
+- nome e telefone normalizado com DDI;
+- origem fixa `/beneficio-assistencial/`;
 - os quatro códigos das opções marcadas (`q1` a `q4`).
+- estado da sincronização e ID do contato no CRM.
 
-Não são armazenados nome, telefone, e-mail, CPF, laudos, documentos, endereço
-IP, user-agent ou outros identificadores do visitante. Os códigos de resposta
-não são enviados a pixels, analytics, CAPI ou LiderHub.
+Nome, telefone e as quatro respostas são enviados ao LiderHub. O contato entra
+no status `LEADS`, recebe a etiqueta `LP | Benefício Assistencial` e ganha uma
+nota interna com as respostas. A nota não é enviada como mensagem ao WhatsApp.
+CPF, laudos e documentos não são solicitados. As respostas continuam fora dos
+payloads enviados à Meta e ao GA4.
 
 ## Proteções
 
-- armazenamento Blob privado;
-- escrita somente pela Function autenticada via OIDC da Vercel;
+- armazenamento no D1 do projeto Cloudflare;
+- chave do LiderHub mantida somente como segredo do ambiente;
 - validação estrita das opções permitidas;
+- validação e normalização de nome e telefone;
 - limite de 4 KiB por requisição;
 - validação de mesma origem;
 - campo honeypot para reduzir spam;
@@ -46,5 +50,13 @@ não são enviados a pixels, analytics, CAPI ou LiderHub.
 - `assets/` - logos oficiais usados no formulário.
 
 Na Cloudflare, o evento genérico `Lead` e a atribuição de campanha são
-registrados separadamente. As quatro respostas continuam fora dos payloads
-enviados à Meta e ao GA4 e só aparecem no dashboard protegido `/dash`.
+registrados separadamente. Os dados identificáveis e as respostas não entram
+nos payloads da Meta ou do GA4; aparecem apenas no dashboard protegido `/dash`
+e no contato do LiderHub.
+
+Os parâmetros `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` e
+`utm_term` seguem o método do `krob-tracking-stack`: são capturados pelo
+middleware na entrada da página, persistidos em `sessions` com a chave
+`_krob_sid` e relacionados ao `Lead` por `event_log.session_id`. O dashboard
+faz o `LEFT JOIN` entre evento, sessão e envio do formulário, sem duplicar os
+UTMs na tabela de respostas.
