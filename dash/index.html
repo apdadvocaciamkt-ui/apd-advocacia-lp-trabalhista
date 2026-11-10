@@ -241,6 +241,7 @@
             <tr>
               <th class="text-left py-2 pr-4">When</th>
               <th class="text-left py-2 pr-4">Tipo</th>
+              <th class="text-left py-2 pr-4">Nome</th>
               <th class="text-left py-2 pr-4">Respostas</th>
               <th class="text-left py-2 pr-4">Source</th>
               <th class="text-left py-2 pr-4">Medium</th>
@@ -252,7 +253,7 @@
             </tr>
           </thead>
           <tbody id="leads-tbody">
-            <tr><td colspan="10" class="py-6 text-center text-[color:var(--muted)]">Carregando…</td></tr>
+            <tr><td colspan="11" class="py-6 text-center text-[color:var(--muted)]">Carregando…</td></tr>
           </tbody>
         </table>
       </div>
@@ -504,13 +505,14 @@
     qs('#kpi-leads').textContent = fmtInt((data.leads || []).length);
     const tbody = qs('#leads-tbody');
     if (!data.leads || data.leads.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="10" class="py-6 text-center text-[color:var(--muted)]">Nenhum lead neste período.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="11" class="py-6 text-center text-[color:var(--muted)]">Nenhum lead neste período.</td></tr>';
       return;
     }
     tbody.innerHTML = data.leads.map((l, i) => `
       <tr class="row-hover border-b border-[color:var(--border)] cursor-pointer" data-idx="${i}">
         <td class="py-2 pr-4 text-[color:var(--dim)]">${fmtDate(l.timestamp)}</td>
         <td class="py-2 pr-4">${escapeHtml(leadType(l))}</td>
+        <td class="py-2 pr-4 font-medium whitespace-nowrap">${escapeHtml(l.form_name || l.raw_email || '—')}</td>
         <td class="py-2 pr-4 text-[color:var(--dim)]">${l.form_submission_id ? '4 respostas' : '-'}</td>
         <td class="py-2 pr-4">${escapeHtml(l.utm_source || '(direct)')}</td>
         <td class="py-2 pr-4 text-[color:var(--dim)]">${escapeHtml(l.utm_medium || '—')}</td>
