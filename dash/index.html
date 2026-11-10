@@ -677,8 +677,6 @@
         <div class="grid sm:grid-cols-2 gap-2 mb-3">
           ${renderDetailField('Nome', row.form_name || '—')}
           ${renderDetailField('WhatsApp', row.form_phone ? `+${row.form_phone}` : '—')}
-          ${renderDetailField('CRM', row.crm_status || 'pendente')}
-          ${renderDetailField('ID do contato', row.crm_contact_id || '—')}
         </div>
         <div class="space-y-2">
           ${questions.map(([question, code]) => `

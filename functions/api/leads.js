@@ -62,10 +62,7 @@ export async function onRequestGet(context) {
         b.q2,
         b.q3,
         b.q4,
-        b.source_path AS form_source_path,
-        b.crm_status,
-        b.crm_contact_id,
-        b.crm_synced_at
+        b.source_path AS form_source_path
       FROM event_log e
       LEFT JOIN sessions s ON e.session_id = s.session_id
       LEFT JOIN benefit_form_submissions b ON e.event_id = b.event_id
