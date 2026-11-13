@@ -34,6 +34,7 @@ const LEAD_DATA_CTE = `
       b.id AS form_submission_id,
       b.name AS form_name,
       b.phone AS form_phone,
+      b.email AS form_email,
       b.q1,
       b.q2,
       b.q3,
@@ -83,7 +84,7 @@ export async function onRequestGet(context) {
     const digits = search.replace(/\D/g, '');
     searchFilters.push(`(
       LOWER(COALESCE(form_name, '')) LIKE ? ESCAPE '\\'
-      OR LOWER(COALESCE(raw_email, '')) LIKE ? ESCAPE '\\'
+      OR LOWER(COALESCE(form_email, raw_email, '')) LIKE ? ESCAPE '\\'
       OR COALESCE(form_phone, '') LIKE ? ESCAPE '\\'
     )`);
     searchParams.push(`%${escaped}%`, `%${escaped}%`, digits ? `%${escapeLike(digits)}%` : '__no_phone_match__');

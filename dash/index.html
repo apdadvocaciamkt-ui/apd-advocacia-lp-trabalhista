@@ -125,8 +125,8 @@
             </div>
             <div class="grid sm:grid-cols-[minmax(260px,1fr)_220px_auto] gap-3 w-full xl:max-w-3xl">
               <label class="block">
-                <span class="block text-xs font-bold text-[color:var(--dim)] mb-1.5">Pesquisar nome ou telefone</span>
-                <input id="lead-search" class="field" type="search" autocomplete="off" placeholder="Ex.: Maria ou 99999-1234">
+                <span class="block text-xs font-bold text-[color:var(--dim)] mb-1.5">Pesquisar nome, e-mail ou telefone</span>
+                <input id="lead-search" class="field" type="search" autocomplete="off" placeholder="Ex.: Maria, email@dominio.com ou telefone">
               </label>
               <label class="block">
                 <span class="block text-xs font-bold text-[color:var(--dim)] mb-1.5">Filtrar por funil</span>
@@ -390,7 +390,7 @@
         <tr class="row-hover border-b border-[color:var(--border)] cursor-pointer" data-index="${index}" tabindex="0">
           <td class="py-3 px-4 text-[color:var(--dim)] whitespace-nowrap">${fmtDate(lead.timestamp)}</td>
           <td class="py-3 pr-4 font-semibold whitespace-nowrap">${escapeHtml(funnelLabel(lead.funnel))}</td>
-          <td class="py-3 pr-4 font-semibold whitespace-nowrap">${escapeHtml(lead.form_name || lead.raw_email || 'Sem nome')}</td>
+          <td class="py-3 pr-4 font-semibold whitespace-nowrap">${escapeHtml(lead.form_name || lead.form_email || lead.raw_email || 'Sem nome')}</td>
           <td class="py-3 pr-4 mono whitespace-nowrap">${escapeHtml(formatPhone(lead.form_phone) || '—')}</td>
           <td class="py-3 pr-4">${lead.form_submission_id ? '<span class="badge badge-form">Ver respostas</span>' : '<span class="badge badge-click">Sem formulário</span>'}</td>
           <td class="py-3 pr-4">${escapeHtml(lead.utm_source || 'Direto')}</td>
@@ -417,13 +417,14 @@
     }
 
     function openDetails(lead) {
-      qs('#modal-title').textContent = lead.form_name || lead.raw_email || 'Lead sem nome';
+      qs('#modal-title').textContent = lead.form_name || lead.form_email || lead.raw_email || 'Lead sem nome';
       qs('#modal-subtitle').textContent = `${fmtDate(lead.timestamp)} · ${funnelLabel(lead.funnel)}`;
       qs('#modal-body').innerHTML = `
         <section>
           <h3 class="font-bold text-sm mb-3">Contato</h3>
           <div class="grid sm:grid-cols-2 gap-2">
-            ${detailField('Nome', lead.form_name || lead.raw_email || '—')}
+            ${detailField('Nome', lead.form_name || '-')}
+            ${detailField('E-mail', lead.form_email || lead.raw_email || '-')}
             ${detailField('WhatsApp', formatPhone(lead.form_phone) || '—')}
             ${detailField('Funil', funnelLabel(lead.funnel))}
             ${detailField('Data', fmtDate(lead.timestamp))}

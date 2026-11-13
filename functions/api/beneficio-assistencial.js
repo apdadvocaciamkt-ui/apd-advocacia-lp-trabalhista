@@ -1,3 +1,5 @@
+import { syncBenefitLead } from '../_lib/liderhub.js';
+
 const MAX_BODY_BYTES = 4096;
 const EVENT_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const ALLOWED_ANSWERS = {
@@ -45,9 +47,10 @@ export async function onRequestPost(context) {
   const { event_id: eventId, q1, q2, q3, q4 } = body;
   const name = normalizeName(body.name);
   const phone = normalizeBrazilPhone(body.phone);
+  const email = normalizeEmail(body.email);
   if (
     typeof eventId !== 'string' || !EVENT_ID_PATTERN.test(eventId) ||
-    !name || !phone ||
+    !name || !phone || !email ||
     typeof q1 !== 'string' || !ALLOWED_ANSWERS.q1.has(q1) ||
     typeof q2 !== 'string' || !ALLOWED_ANSWERS.q2.has(q2) ||
     typeof q3 !== 'string' || !ALLOWED_ANSWERS.q3.has(q3) ||
@@ -63,12 +66,13 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(`
       INSERT INTO benefit_form_submissions (
-        id, event_id, session_id, name, phone, q1, q2, q3, q4,
+        id, event_id, session_id, name, phone, email, q1, q2, q3, q4,
         source_path, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(event_id) DO UPDATE SET
         name = excluded.name,
         phone = excluded.phone,
+        email = excluded.email,
         q1 = excluded.q1,
         q2 = excluded.q2,
         q3 = excluded.q3,
@@ -79,6 +83,7 @@ export async function onRequestPost(context) {
       cookies._krob_sid || '',
       name,
       phone,
+      email,
       q1,
       q2,
       q3,
@@ -86,9 +91,22 @@ export async function onRequestPost(context) {
       '/beneficio-assistencial/',
       createdAt,
     ).run();
+
+    await env.DB.prepare(`
+      INSERT INTO benefit_form_crm_sync (event_id, status)
+      VALUES (?, 'pending')
+      ON CONFLICT(event_id) DO NOTHING
+    `).bind(eventId).run();
   } catch (error) {
     console.error('Benefit form D1 error:', error?.message || 'unknown');
     return json({ ok: false, error: 'Nao foi possivel registrar as respostas.' }, 500);
+  }
+
+  const syncTask = syncBenefitLead(env, eventId);
+  if (typeof context.waitUntil === 'function') {
+    context.waitUntil(syncTask);
+  } else {
+    await syncTask;
   }
 
   return json({ ok: true, event_id: eventId }, 201);
@@ -137,6 +155,14 @@ function normalizeBrazilPhone(value) {
   if (digits.length === 10 || digits.length === 11) digits = `55${digits}`;
   if (!/^55\d{10,11}$/.test(digits)) return '';
   return digits;
+}
+
+function normalizeEmail(value) {
+  if (typeof value !== 'string') return '';
+  const normalized = value.trim().toLowerCase();
+  if (normalized.length < 5 || normalized.length > 254 || /[\s\u0000-\u001f\u007f]/.test(normalized)) return '';
+  if (!/^[^@]+@[^@]+\.[^@]+$/.test(normalized)) return '';
+  return normalized;
 }
 
 function json(body, status = 200) {

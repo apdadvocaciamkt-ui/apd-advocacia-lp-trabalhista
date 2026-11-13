@@ -11,8 +11,9 @@ ambiente, `functions/api/beneficio-assistencial.js` grava as respostas no D1
 e sincroniza o contato com o LiderHub. A implantação da Vercel permanece
 disponível como rollback, mas a integração CRM é canônica no Cloudflare.
 
-O sucesso somente é confirmado na tela depois que o registro é gravado e o
-contato é criado ou atualizado no LiderHub.
+O sucesso é confirmado na tela assim que o registro é gravado no D1. A
+sincronização com o LiderHub acontece em segundo plano, para que uma
+indisponibilidade temporária do CRM não provoque perda do lead.
 
 ## Dados armazenados
 
@@ -20,14 +21,15 @@ Cada envio grava no D1:
 
 - ID aleatório;
 - data e hora do envio;
-- nome e telefone normalizado com DDI;
+- nome, e-mail e telefone normalizado com DDI;
 - origem fixa `/beneficio-assistencial/`;
 - os quatro códigos das opções marcadas (`q1` a `q4`).
-- estado da sincronização e ID do contato no CRM.
+- estado da sincronização e ID do contato no CRM, em tabela operacional separada.
 
-Nome, telefone e as quatro respostas são enviados ao LiderHub. O contato entra
-no status `LEADS`, recebe a etiqueta `LP | Benefício Assistencial` e ganha uma
-nota interna com as respostas. A nota não é enviada como mensagem ao WhatsApp.
+Nome, e-mail, telefone e as quatro respostas são enviados ao LiderHub. O contato entra
+no status configurado para triagem, recebe a etiqueta do funil e ganha uma nota
+interna com as respostas e os UTMs disponíveis. A nota não é enviada como
+mensagem ao WhatsApp.
 CPF, laudos e documentos não são solicitados. As respostas continuam fora dos
 payloads enviados à Meta e ao GA4.
 

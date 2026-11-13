@@ -73,7 +73,7 @@ test('searches and filters leads on the server with bound parameters', async () 
 test('dashboard is lead-only and exposes search, funnel and answers', async () => {
   const html = await readFile(new URL('../dash/index.html', import.meta.url), 'utf8');
 
-  assert.match(html, /Pesquisar nome ou telefone/);
+  assert.match(html, /Pesquisar nome, e-mail ou telefone/);
   assert.match(html, /Filtrar por funil/);
   assert.match(html, /Respostas do formulário/);
   assert.doesNotMatch(html, /Gross Revenue|Revenue over time|Average Order|Recent purchases|ROAS|purchase_log/i);
