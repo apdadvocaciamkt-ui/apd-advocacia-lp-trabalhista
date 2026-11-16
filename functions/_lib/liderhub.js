@@ -1,5 +1,8 @@
 const LIDERHUB_API_URL = 'https://api.liderhub.com.br';
 const SYNC_STALE_AFTER_SECONDS = 300;
+const FORM_TAG_NAME = 'Formulário APD - Benefício Assistencial';
+const FORM_SOURCE_NAME = 'Formulário APD - Benefício Assistencial';
+const settingIdCache = new Map();
 
 const ANSWER_LABELS = {
   q1_o1: 'Para mim',
@@ -34,6 +37,19 @@ export async function syncBenefitLead(env, eventId) {
 
     validateConfiguration(env);
 
+    const formTagId = await resolveSettingId(env, {
+      configuredId: env.LIDERHUB_FORM_TAG_ID,
+      path: '/v1/settings/tags',
+      name: FORM_TAG_NAME,
+      kind: 'tag',
+    });
+    const formSourceId = await resolveSettingId(env, {
+      configuredId: env.LIDERHUB_FORM_SOURCE_ID || env.LIDERHUB_SOURCE_ID,
+      path: '/v1/settings/source',
+      name: FORM_SOURCE_NAME,
+      kind: 'origem',
+    });
+
     const contactBody = {
       connection: env.LIDERHUB_CONNECTION_ID,
       number: lead.phone,
@@ -60,20 +76,18 @@ export async function syncBenefitLead(env, eventId) {
       method: 'PATCH',
       body: {
         contact: contactId,
-        tags: [env.LIDERHUB_TAG_ID],
+        tags: [...new Set([env.LIDERHUB_TAG_ID, formTagId])],
         replace: false,
       },
     });
 
-    if (env.LIDERHUB_SOURCE_ID) {
-      await liderhubRequest(env, '/v1/settings/source', {
-        method: 'PATCH',
-        body: {
-          contact: contactId,
-          source: env.LIDERHUB_SOURCE_ID,
-        },
-      });
-    }
+    await liderhubRequest(env, '/v1/settings/source', {
+      method: 'PATCH',
+      body: {
+        contact: contactId,
+        source: formSourceId,
+      },
+    });
 
     await liderhubRequest(env, '/v1/send/message', {
       method: 'POST',
@@ -98,6 +112,23 @@ export async function syncBenefitLead(env, eventId) {
     await updateSyncState(env.DB, eventId, errorCode, contactId, errorCode);
     return { ok: false, error: errorCode };
   }
+}
+
+async function resolveSettingId(env, { configuredId, path, name, kind }) {
+  if (typeof configuredId === 'string' && configuredId.trim()) return configuredId.trim();
+
+  const cacheKey = `${env.LIDERHUB_API_KEY}:${path}:${name}`;
+  const cached = settingIdCache.get(cacheKey);
+  if (cached) return cached;
+
+  const items = await liderhubRequest(env, path, { method: 'GET' });
+  const match = Array.isArray(items) ? items.find(item => item?.name === name) : null;
+  if (!match?.id) {
+    throw crmError('configuration_error', `${kind} do formulario nao encontrada no LiderHub.`);
+  }
+
+  settingIdCache.set(cacheKey, match.id);
+  return match.id;
 }
 
 async function claimSync(db, eventId) {
@@ -174,19 +205,33 @@ function buildInternalNote(lead) {
 }
 
 async function liderhubRequest(env, path, { method, body }) {
-  const response = await fetch(`${LIDERHUB_API_URL}${path}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      'x-company-key': env.LIDERHUB_API_KEY,
-    },
-    body: JSON.stringify(body),
-    signal: AbortSignal.timeout(10000),
-  });
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const response = await fetch(`${LIDERHUB_API_URL}${path}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-company-key': env.LIDERHUB_API_KEY,
+      },
+      body: body === undefined ? undefined : JSON.stringify(body),
+      signal: AbortSignal.timeout(10000),
+    });
 
-  const responseBody = await response.json().catch(() => ({}));
-  if (!response.ok) throw crmError(`liderhub_http_${response.status}`, `LiderHub ${path} HTTP ${response.status}`);
-  return responseBody;
+    const responseBody = await response.json().catch(() => ({}));
+    if (response.ok) return responseBody;
+
+    if (response.status === 429 && attempt < 2) {
+      const retryAfterSeconds = Number(response.headers.get('retry-after'));
+      const delayMs = Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0
+        ? retryAfterSeconds * 1000
+        : 500 * (attempt + 1);
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+      continue;
+    }
+
+    throw crmError(`liderhub_http_${response.status}`, `LiderHub ${path} HTTP ${response.status}`);
+  }
+
+  throw crmError('liderhub_http_429', `LiderHub ${path} HTTP 429`);
 }
 
 async function updateSyncState(db, eventId, status, contactId, errorCode) {

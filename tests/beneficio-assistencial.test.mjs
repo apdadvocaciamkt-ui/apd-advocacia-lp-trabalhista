@@ -108,7 +108,8 @@ const crmEnv = {
   LIDERHUB_CONNECTION_ID: 'connection-id',
   LIDERHUB_STATUS_ID: 'status-id',
   LIDERHUB_TAG_ID: 'tag-id',
-  LIDERHUB_SOURCE_ID: 'source-id',
+  LIDERHUB_FORM_TAG_ID: 'form-tag-id',
+  LIDERHUB_FORM_SOURCE_ID: 'form-source-id',
 };
 
 test('stores the lead first and syncs contact, tag, source and answers to LiderHub', async () => {
@@ -148,12 +149,12 @@ test('stores the lead first and syncs contact, tag, source and answers to LiderH
     });
     assert.deepEqual(calls[1].body, {
       contact: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
-      tags: ['tag-id'],
+      tags: ['tag-id', 'form-tag-id'],
       replace: false,
     });
     assert.deepEqual(calls[2].body, {
       contact: 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee',
-      source: 'source-id',
+      source: 'form-source-id',
     });
     assert.equal(calls[3].body.note, true);
     assert.match(calls[3].body.content, /Tenho alguns documentos/);
@@ -161,6 +162,52 @@ test('stores the lead first and syncs contact, tag, source and answers to LiderH
     assert.match(calls[3].body.content, /maria\.silva@example\.com/);
     assert.match(calls[3].body.content, /utm_source: meta/);
     assert.match(calls[3].body.content, /ID do envio: 123e4567/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('resolves the form tag and source by name when ids are not configured', async () => {
+  const db = createDb();
+  const calls = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, method: options.method, body: options.body ? JSON.parse(options.body) : undefined });
+    if (url.endsWith('/v1/settings/tags') && options.method === 'GET') {
+      return Response.json([
+        { id: 'other-tag-id', name: 'Outra tag' },
+        { id: 'resolved-form-tag-id', name: 'Formulário APD - Benefício Assistencial' },
+      ]);
+    }
+    if (url.endsWith('/v1/settings/source') && options.method === 'GET') {
+      return Response.json([
+        { id: 'resolved-form-source-id', name: 'Formulário APD - Benefício Assistencial' },
+      ]);
+    }
+    if (url.endsWith('/v1/contacts')) {
+      return Response.json({ exist: true, id: 'bbbbbbbb-cccc-4ddd-8eee-ffffffffffff', created: true });
+    }
+    return Response.json({ response: 'Success' });
+  };
+
+  try {
+    const run = createContext(db, {
+      LIDERHUB_API_KEY: 'lookup-test-key',
+      LIDERHUB_CONNECTION_ID: 'connection-id',
+      LIDERHUB_STATUS_ID: 'status-id',
+      LIDERHUB_TAG_ID: 'bpc-tag-id',
+    });
+    const response = await onRequestPost(run.context);
+    assert.equal(response.status, 201);
+
+    await run.finish();
+
+    assert.equal(db.state.syncStatus, 'synced');
+    assert.equal(calls.length, 6);
+    assert.equal(calls[0].method, 'GET');
+    assert.equal(calls[1].method, 'GET');
+    assert.deepEqual(calls[3].body.tags, ['bpc-tag-id', 'resolved-form-tag-id']);
+    assert.equal(calls[4].body.source, 'resolved-form-source-id');
   } finally {
     globalThis.fetch = originalFetch;
   }
