@@ -7,6 +7,7 @@ const ALLOWED_ANSWERS = {
   q2: new Set(['q2_o1', 'q2_o2', 'q2_o3', 'q2_o4']),
   q3: new Set(['q3_o1', 'q3_o2', 'q3_o3']),
   q4: new Set(['q4_o1', 'q4_o2', 'q4_o3']),
+  q5: new Set(['q5_o1', 'q5_o2', 'q5_o3', 'q5_o4', 'q5_o5']),
 };
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -44,7 +45,7 @@ export async function onRequestPost(context) {
     return json({ ok: true }, 202);
   }
 
-  const { event_id: eventId, q1, q2, q3, q4 } = body;
+  const { event_id: eventId, q1, q2, q3, q4, q5 } = body;
   const name = normalizeName(body.name);
   const phone = normalizeBrazilPhone(body.phone);
   const email = normalizeEmail(body.email);
@@ -54,7 +55,8 @@ export async function onRequestPost(context) {
     typeof q1 !== 'string' || !ALLOWED_ANSWERS.q1.has(q1) ||
     typeof q2 !== 'string' || !ALLOWED_ANSWERS.q2.has(q2) ||
     typeof q3 !== 'string' || !ALLOWED_ANSWERS.q3.has(q3) ||
-    typeof q4 !== 'string' || !ALLOWED_ANSWERS.q4.has(q4)
+    typeof q4 !== 'string' || !ALLOWED_ANSWERS.q4.has(q4) ||
+    typeof q5 !== 'string' || !ALLOWED_ANSWERS.q5.has(q5)
   ) {
     return json({ ok: false, error: 'Respostas invalidas.' }, 400);
   }
@@ -66,9 +68,9 @@ export async function onRequestPost(context) {
   try {
     await env.DB.prepare(`
       INSERT INTO benefit_form_submissions (
-        id, event_id, session_id, name, phone, email, q1, q2, q3, q4,
+        id, event_id, session_id, name, phone, email, q1, q2, q3, q4, q5,
         source_path, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(event_id) DO UPDATE SET
         name = excluded.name,
         phone = excluded.phone,
@@ -76,7 +78,8 @@ export async function onRequestPost(context) {
         q1 = excluded.q1,
         q2 = excluded.q2,
         q3 = excluded.q3,
-        q4 = excluded.q4
+        q4 = excluded.q4,
+        q5 = excluded.q5
     `).bind(
       submissionId,
       eventId,
@@ -88,6 +91,7 @@ export async function onRequestPost(context) {
       q2,
       q3,
       q4,
+      q5,
       '/beneficio-assistencial/',
       createdAt,
     ).run();

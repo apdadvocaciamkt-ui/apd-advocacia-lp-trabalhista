@@ -219,6 +219,10 @@
       q2_o2: 'Pessoa idosa com 65 anos ou mais', q2_o3: 'Sofreu um acidente e ficou com sequelas', q2_o4: 'Outra situação',
       q3_o1: 'Sim', q3_o2: 'Não', q3_o3: 'Não tenho certeza',
       q4_o1: 'Sim', q4_o2: 'Não', q4_o3: 'Tenho alguns documentos',
+      q5_o1: 'Sim, já tenho advogado e meu processo está em andamento',
+      q5_o2: 'Sim, tenho advogado, mas meu processo ainda não foi iniciado',
+      q5_o3: 'Sim, tenho processo em andamento, mas não tenho advogado atualmente',
+      q5_o4: 'Não tenho advogado nem processo em andamento', q5_o5: 'Não sei informar',
     };
 
     const url = new URL(window.location.href);
@@ -457,6 +461,7 @@
         ['Qual é a situação da pessoa?', lead.q2],
         ['O núcleo familiar recebe Bolsa Família?', lead.q3],
         ['Possui laudos ou documentos médicos?', lead.q4],
+        ['Possui advogado ou processo judicial em andamento?', lead.q5],
       ];
       return `
         <section>

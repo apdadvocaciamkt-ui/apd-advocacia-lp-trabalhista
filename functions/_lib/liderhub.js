@@ -15,6 +15,11 @@ const ANSWER_LABELS = {
   q4_o1: 'Sim',
   q4_o2: 'Nao',
   q4_o3: 'Tenho alguns documentos',
+  q5_o1: 'Sim, ja tenho advogado e meu processo esta em andamento',
+  q5_o2: 'Sim, tenho advogado, mas meu processo ainda nao foi iniciado',
+  q5_o3: 'Sim, tenho processo em andamento, mas nao tenho advogado atualmente',
+  q5_o4: 'Nao tenho advogado nem processo em andamento',
+  q5_o5: 'Nao sei informar',
 };
 
 export async function syncBenefitLead(env, eventId) {
@@ -111,7 +116,7 @@ async function claimSync(db, eventId) {
 async function loadLead(db, eventId) {
   return db.prepare(`
     SELECT
-      b.event_id, b.name, b.phone, b.email, b.q1, b.q2, b.q3, b.q4, b.source_path,
+      b.event_id, b.name, b.phone, b.email, b.q1, b.q2, b.q3, b.q4, b.q5, b.source_path,
       s.utm_source, s.utm_medium, s.utm_campaign, s.utm_content, s.utm_term
     FROM benefit_form_submissions b
     LEFT JOIN sessions s ON s.session_id = b.session_id
@@ -149,6 +154,7 @@ function buildInternalNote(lead) {
     `2. Situacao da pessoa: ${ANSWER_LABELS[lead.q2]}`,
     `3. Nucleo familiar recebe Bolsa Familia: ${ANSWER_LABELS[lead.q3]}`,
     `4. Possui laudos ou documentos medicos: ${ANSWER_LABELS[lead.q4]}`,
+    `5. Possui advogado ou processo judicial em andamento: ${ANSWER_LABELS[lead.q5]}`,
   ];
 
   const utms = [

@@ -6,6 +6,7 @@ const ALLOWED_ANSWERS = {
   q2: new Set(["q2_o1", "q2_o2", "q2_o3", "q2_o4"]),
   q3: new Set(["q3_o1", "q3_o2", "q3_o3"]),
   q4: new Set(["q4_o1", "q4_o2", "q4_o3"]),
+  q5: new Set(["q5_o1", "q5_o2", "q5_o3", "q5_o4", "q5_o5"]),
 };
 
 function json(body, status = 200) {
@@ -83,12 +84,13 @@ export default {
       return json({ ok: true }, 202);
     }
 
-    const { q1, q2, q3, q4 } = body;
+    const { q1, q2, q3, q4, q5 } = body;
     if (
       typeof q1 !== "string" || !ALLOWED_ANSWERS.q1.has(q1) ||
       typeof q2 !== "string" || !ALLOWED_ANSWERS.q2.has(q2) ||
       typeof q3 !== "string" || !ALLOWED_ANSWERS.q3.has(q3) ||
-      typeof q4 !== "string" || !ALLOWED_ANSWERS.q4.has(q4)
+      typeof q4 !== "string" || !ALLOWED_ANSWERS.q4.has(q4) ||
+      typeof q5 !== "string" || !ALLOWED_ANSWERS.q5.has(q5)
     ) {
       return json({ ok: false, error: "Respostas invalidas." }, 400);
     }
@@ -100,7 +102,7 @@ export default {
       id,
       submittedAt,
       source: "beneficio-assistencial",
-      answers: { q1, q2, q3, q4 },
+      answers: { q1, q2, q3, q4, q5 },
     };
 
     try {

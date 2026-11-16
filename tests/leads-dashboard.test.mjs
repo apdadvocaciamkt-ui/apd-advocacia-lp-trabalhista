@@ -76,5 +76,6 @@ test('dashboard is lead-only and exposes search, funnel and answers', async () =
   assert.match(html, /Pesquisar nome, e-mail ou telefone/);
   assert.match(html, /Filtrar por funil/);
   assert.match(html, /Respostas do formulário/);
+  assert.match(html, /Possui advogado ou processo judicial em andamento/);
   assert.doesNotMatch(html, /Gross Revenue|Revenue over time|Average Order|Recent purchases|ROAS|purchase_log/i);
 });

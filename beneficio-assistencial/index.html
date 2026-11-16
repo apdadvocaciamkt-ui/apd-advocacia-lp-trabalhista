@@ -480,14 +480,14 @@
         <header class="quiz-header">
           <img class="mobile-logo" src="assets/apd-logo-horizontal-vinho-fundo-branco.png" alt="Almeida & Pandolfi Damico Advogados">
           <span class="progress-copy" id="progressCopy">Introdução</span>
-          <div class="progress-track" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+          <div class="progress-track" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
             <div class="progress-bar" id="progressBar"></div>
           </div>
         </header>
 
         <div class="screen intro is-active" data-screen="0">
           <p class="eyebrow">Benefício assistencial</p>
-          <h1>Quatro perguntas para organizar seu atendimento.</h1>
+          <h1>Cinco perguntas para organizar seu atendimento.</h1>
           <p class="support">Responda com calma. O formulário não decide elegibilidade e não substitui orientação jurídica.</p>
           <div class="privacy-note">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5.4c0 4.6 3.2 8.8 7.5 9.6 4.3-.8 7.5-5 7.5-9.6V6L12 3Z" stroke="currentColor" stroke-width="1.7"/><path d="m9.2 12 1.8 1.8 3.9-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -497,7 +497,7 @@
         </div>
 
         <div class="screen" data-screen="1" data-question="q1">
-          <p class="eyebrow">Pergunta 1 de 4</p>
+          <p class="eyebrow">Pergunta 1 de 5</p>
           <h2 id="q1-title">Para quem você busca o benefício?</h2>
           <fieldset class="options" aria-labelledby="q1-title">
             <label class="option"><input type="radio" name="q1" value="q1_o1"><span class="option-card"><span class="choice-key">A</span><span class="choice-text">Para mim</span></span></label>
@@ -507,7 +507,7 @@
         </div>
 
         <div class="screen" data-screen="2" data-question="q2">
-          <p class="eyebrow">Pergunta 2 de 4</p>
+          <p class="eyebrow">Pergunta 2 de 5</p>
           <h2 id="q2-title">Qual é a situação da pessoa?</h2>
           <fieldset class="options" aria-labelledby="q2-title">
             <label class="option"><input type="radio" name="q2" value="q2_o1"><span class="option-card"><span class="choice-key">A</span><span class="choice-text">Pessoa com deficiência ou doença que dificulta minhas atividades diárias.</span></span></label>
@@ -518,7 +518,7 @@
         </div>
 
         <div class="screen" data-screen="3" data-question="q3">
-          <p class="eyebrow">Pergunta 3 de 4</p>
+          <p class="eyebrow">Pergunta 3 de 5</p>
           <h2 id="q3-title">O núcleo familiar recebe bolsa família?</h2>
           <fieldset class="options" aria-labelledby="q3-title">
             <label class="option"><input type="radio" name="q3" value="q3_o1"><span class="option-card"><span class="choice-key">A</span><span class="choice-text">Sim</span></span></label>
@@ -528,7 +528,7 @@
         </div>
 
         <div class="screen" data-screen="4" data-question="q4">
-          <p class="eyebrow">Pergunta 4 de 4</p>
+          <p class="eyebrow">Pergunta 4 de 5</p>
           <h2 id="q4-title">A pessoa possui laudos ou documentos médicos, se aplicável?</h2>
           <fieldset class="options" aria-labelledby="q4-title">
             <label class="option"><input type="radio" name="q4" value="q4_o1"><span class="option-card"><span class="choice-key">A</span><span class="choice-text">Sim</span></span></label>
@@ -537,7 +537,19 @@
           </fieldset>
         </div>
 
-        <div class="screen" data-screen="5" data-contact>
+        <div class="screen" data-screen="5" data-question="q5">
+          <p class="eyebrow">Pergunta 5 de 5</p>
+          <h2 id="q5-title">Você já possui advogado ou algum processo judicial em andamento relacionado ao benefício?</h2>
+          <fieldset class="options" aria-labelledby="q5-title">
+            <label class="option"><input type="radio" name="q5" value="q5_o1"><span class="option-card"><span class="choice-key">A</span><span class="choice-text">Sim, já tenho advogado e meu processo está em andamento.</span></span></label>
+            <label class="option"><input type="radio" name="q5" value="q5_o2"><span class="option-card"><span class="choice-key">B</span><span class="choice-text">Sim, tenho advogado, mas meu processo ainda não foi iniciado.</span></span></label>
+            <label class="option"><input type="radio" name="q5" value="q5_o3"><span class="option-card"><span class="choice-key">C</span><span class="choice-text">Sim, tenho processo em andamento, mas não tenho advogado atualmente.</span></span></label>
+            <label class="option"><input type="radio" name="q5" value="q5_o4"><span class="option-card"><span class="choice-key">D</span><span class="choice-text">Não tenho advogado nem processo em andamento.</span></span></label>
+            <label class="option"><input type="radio" name="q5" value="q5_o5"><span class="option-card"><span class="choice-key">E</span><span class="choice-text">Não sei informar.</span></span></label>
+          </fieldset>
+        </div>
+
+        <div class="screen" data-screen="6" data-contact>
           <p class="eyebrow">Seus dados de contato</p>
           <h2 id="contact-title">Como nossa equipe pode falar com você?</h2>
           <p class="support">Informe o nome, o e-mail e o WhatsApp da pessoa que deve receber o atendimento.</p>
@@ -559,7 +571,7 @@
           <p class="field-hint">Ao enviar, você autoriza a APD a usar esses dados e respostas para entrar em contato sobre este atendimento. Consulte a <a href="https://apdadvogados.com.br/politicas" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.</p>
         </div>
 
-        <div class="screen" data-screen="6">
+        <div class="screen" data-screen="7">
           <div class="done-mark" aria-hidden="true">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.3 4.3L19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
@@ -611,7 +623,7 @@
       const hasAnswer = () => {
         const question = activeScreen()?.dataset.question;
         if (question) return Boolean(document.querySelector(`input[name="${question}"]:checked`));
-        if (current === 5) {
+        if (current === 6) {
           const nameIsValid = contactName.value.trim().length >= 2;
           const phoneDigits = contactPhone.value.replace(/\D/g, "");
           const phoneIsValid = phoneDigits.length === 10 || phoneDigits.length === 11;
@@ -624,16 +636,16 @@
       const updateUi = ({ focus = true } = {}) => {
         screens.forEach((screen) => screen.classList.toggle("is-active", Number(screen.dataset.screen) === current));
 
-        const answeredStep = Math.min(Math.max(current, 0), 5);
-        progressBar.style.width = `${(answeredStep / 5) * 100}%`;
+        const answeredStep = Math.min(Math.max(current, 0), 6);
+        progressBar.style.width = `${(answeredStep / 6) * 100}%`;
         progressTrack.setAttribute("aria-valuenow", String(answeredStep));
-        progressCopy.textContent = current === 0 ? "Introdução" : current === 5 ? "Contato" : current === 6 ? "Concluído" : `${current} de 4`;
+        progressCopy.textContent = current === 0 ? "Introdução" : current === 6 ? "Contato" : current === 7 ? "Concluído" : `${current} de 5`;
 
-        backButton.classList.toggle("is-hidden", current === 0 || current === 6);
-        nextButton.classList.toggle("is-hidden", current === 6);
-        nextButton.disabled = submitting || (current >= 1 && current <= 5 && !hasAnswer());
-        nextButton.textContent = submitting ? "Registrando..." : current === 0 ? "Começar" : current === 5 ? "Enviar respostas" : "Continuar";
-        footerStatus.textContent = submissionError || (current === 6 ? "Dados enviados para a equipe" : "As respostas serão registradas ao concluir");
+        backButton.classList.toggle("is-hidden", current === 0 || current === 7);
+        nextButton.classList.toggle("is-hidden", current === 7);
+        nextButton.disabled = submitting || (current >= 1 && current <= 6 && !hasAnswer());
+        nextButton.textContent = submitting ? "Registrando..." : current === 0 ? "Começar" : current === 6 ? "Enviar respostas" : "Continuar";
+        footerStatus.textContent = submissionError || (current === 7 ? "Dados enviados para a equipe" : "As respostas serão registradas ao concluir");
 
         if (focus) {
           const heading = activeScreen()?.querySelector("h1, h2");
@@ -681,7 +693,7 @@
           phone: contactPhone.value,
           email: contactEmail.value.trim(),
         };
-        ["q1", "q2", "q3", "q4"].forEach((question) => {
+        ["q1", "q2", "q3", "q4", "q5"].forEach((question) => {
           payload[question] = document.querySelector(`input[name="${question}"]:checked`).value;
         });
 
@@ -701,10 +713,10 @@
       };
 
       const goNext = async () => {
-        if (submitting || current === 6) return;
+        if (submitting || current === 7) return;
         if (!hasAnswer()) return;
 
-        if (current === 5) {
+        if (current === 6) {
           submitting = true;
           submissionError = "";
           updateUi({ focus: false });
@@ -721,7 +733,7 @@
           submitting = false;
         }
 
-        current = Math.min(6, current + 1);
+        current = Math.min(7, current + 1);
         updateUi();
       };
 

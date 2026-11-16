@@ -13,6 +13,7 @@ const validPayload = {
   q2: 'q2_o2',
   q3: 'q3_o1',
   q4: 'q4_o3',
+  q5: 'q5_o4',
 };
 
 function requestFor(payload) {
@@ -156,6 +157,7 @@ test('stores the lead first and syncs contact, tag, source and answers to LiderH
     });
     assert.equal(calls[3].body.note, true);
     assert.match(calls[3].body.content, /Tenho alguns documentos/);
+    assert.match(calls[3].body.content, /Nao tenho advogado nem processo em andamento/);
     assert.match(calls[3].body.content, /maria\.silva@example\.com/);
     assert.match(calls[3].body.content, /utm_source: meta/);
     assert.match(calls[3].body.content, /ID do envio: 123e4567/);
@@ -209,4 +211,16 @@ test('rejects a missing name or invalid phone before writing', async () => {
 
   assert.equal(response.status, 400);
   assert.equal(db.state.name, undefined);
+});
+
+test('rejects a missing fifth answer before writing', async () => {
+  const db = createDb();
+  const { q5: _q5, ...payloadWithoutQ5 } = validPayload;
+  const response = await onRequestPost({
+    request: requestFor(payloadWithoutQ5),
+    env: { DB: db },
+  });
+
+  assert.equal(response.status, 400);
+  assert.equal(db.state.writes, 0);
 });

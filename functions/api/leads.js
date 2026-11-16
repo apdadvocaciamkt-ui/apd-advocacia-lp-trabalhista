@@ -39,6 +39,7 @@ const LEAD_DATA_CTE = `
       b.q2,
       b.q3,
       b.q4,
+      b.q5,
       b.source_path AS form_source_path,
       CASE
         WHEN COALESCE(b.source_path, '') LIKE '%beneficio-assistencial%'

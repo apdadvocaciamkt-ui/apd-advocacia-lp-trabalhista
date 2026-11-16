@@ -23,10 +23,10 @@ Cada envio grava no D1:
 - data e hora do envio;
 - nome, e-mail e telefone normalizado com DDI;
 - origem fixa `/beneficio-assistencial/`;
-- os quatro códigos das opções marcadas (`q1` a `q4`).
+- os cinco códigos das opções marcadas (`q1` a `q5`).
 - estado da sincronização e ID do contato no CRM, em tabela operacional separada.
 
-Nome, e-mail, telefone e as quatro respostas são enviados ao LiderHub. O contato entra
+Nome, e-mail, telefone e as cinco respostas são enviados ao LiderHub. O contato entra
 no status configurado para triagem, recebe a etiqueta do funil e ganha uma nota
 interna com as respostas e os UTMs disponíveis. A nota não é enviada como
 mensagem ao WhatsApp.
