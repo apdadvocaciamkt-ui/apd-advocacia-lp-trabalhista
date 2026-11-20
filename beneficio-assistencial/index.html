@@ -685,6 +685,10 @@
         }).catch(() => {});
       };
 
+      // Leads que informam advogado atual continuam salvos no D1 e no CRM,
+      // mas nao alimentam a otimizacao de conversao da Meta/GTM.
+      const shouldTrackConversionLead = ({ q5 }) => !["q5_o1", "q5_o2"].includes(q5);
+
       const submitAnswers = async () => {
         const payload = {
           event_id: submissionEventId,
@@ -709,7 +713,9 @@
 
         const responseBody = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(responseBody.error || "submission_failed");
-        trackLead(submissionEventId);
+        if (shouldTrackConversionLead(payload)) {
+          trackLead(submissionEventId);
+        }
       };
 
       const goNext = async () => {

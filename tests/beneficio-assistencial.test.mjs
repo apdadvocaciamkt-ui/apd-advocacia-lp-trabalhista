@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import { onRequestPost } from '../functions/api/beneficio-assistencial.js';
@@ -15,6 +16,17 @@ const validPayload = {
   q4: 'q4_o3',
   q5: 'q5_o4',
 };
+
+test('does not send conversion events when question 5 says the lead already has a lawyer', async () => {
+  const html = await readFile(new URL('../beneficio-assistencial/index.html', import.meta.url), 'utf8');
+
+  assert.match(
+    html,
+    /const shouldTrackConversionLead = \(\{ q5 \}\) => !\["q5_o1", "q5_o2"\]\.includes\(q5\);/,
+  );
+  assert.match(html, /if \(shouldTrackConversionLead\(payload\)\) \{\s*trackLead\(submissionEventId\);\s*\}/);
+  assert.doesNotMatch(html, /LeadDesqualificado|DisqualifiedLead/);
+});
 
 function requestFor(payload) {
   return new Request('https://apdadvocacia.pages.dev/api/beneficio-assistencial', {
